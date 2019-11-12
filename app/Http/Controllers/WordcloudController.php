@@ -31,11 +31,13 @@ class WordcloudController extends Controller
             ->delete();
 
         foreach ($request->word as $word) {
-            Word::create([
-                'wordcloud_id' => $wordcloud->id,
-                'user_id' => $user->id,
-                'word' => $word,
-            ]);
+            if ($word) {
+                Word::create([
+                    'wordcloud_id' => $wordcloud->id,
+                    'user_id' => $user->id,
+                    'word' => $word,
+                ]);
+            }
         }
         return redirect()->route('wordcloud.show', [
             'wordcloud' => $wordcloud
