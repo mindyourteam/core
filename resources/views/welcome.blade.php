@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>{{ config('app.name') }}</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -61,6 +61,13 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            .alert.alert-success {
+                border-left: 0.3rem solid #d1d1d1;
+                margin-left: 0;
+                margin-right: 0;
+                padding: 1rem 1.5rem;
+            }
         </style>
     </head>
     <body>
@@ -80,19 +87,19 @@
             @endif
 
             <div class="content">
+
+                @if (session('status'))
+                    <div class="alert alert-success">
+                        {{ session('status') }}
+                    </div>
+                @endif
+
                 <div class="title m-b-md">
-                    Laravel
+                    ::pdp zone::
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <p>Für weitere Informationen suche im Intranet nach &raquo;Product People&laquo;</p>
                 </div>
             </div>
         </div>
