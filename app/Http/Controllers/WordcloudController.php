@@ -6,6 +6,7 @@ use App\Wordcloud;
 use App\Word;
 use Illuminate\Http\Request;
 use lotsofcode\TagCloud\TagCloud;
+use Illuminate\Support\Facades\DB;
 
 class WordcloudController extends Controller
 {
@@ -62,9 +63,16 @@ class WordcloudController extends Controller
         })->toArray();
         $cloud->addTags($words);
 
+        $sorted = Word::select(DB::raw('word, count(word) as count'))
+            ->where('wordcloud_id', $wordcloud->id)
+            ->groupBy('word')
+            ->orderBy('count', 'desc')
+            ->get();
+
         return view('wordcloud.show', [
             'wordcloud' => $wordcloud,
-            'cloud' => $cloud
+            'cloud' => $cloud,
+            'sorted' => $sorted,
         ]);
     }
 }
