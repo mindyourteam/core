@@ -13,11 +13,12 @@
 
         <table>
             <thead>
-                <tr><th>Wort</th><th>Anzahl</th></tr>
+                <tr><td>#</td><th>Wort</th><th>Anzahl</th></tr>
             </thead>
             <tbody>
-            @foreach ($sorted as $word)
+            @foreach ($sorted as $i => $word)
                 <tr>
+                    <td>{{ $i+1 }}</td>
                     <td>{{ $word->word }}</td>
                     <td>{{ $word->count }}</td>
                 </tr>
