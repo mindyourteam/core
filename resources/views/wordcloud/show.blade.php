@@ -13,14 +13,15 @@
 
         <table>
             <thead>
-                <tr><td>#</td><th>Wort</th><th>Anzahl</th></tr>
+                <tr><td>#</td><th>Wort</th><th>Anzahl</th><th>Nutzer</th></tr>
             </thead>
             <tbody>
             @foreach ($sorted as $i => $word)
                 <tr>
                     <td>{{ $i+1 }}</td>
-                    <td>{{ $word->word }}</td>
-                    <td>{{ $word->count }}</td>
+                    <td>{{ $word->name }}</td>
+                    <td>{{ $word->users_count }}</td>
+                    <td>{{ $word->users->map(function ($user) { return $user->name; })->join(', ') }}</td>
                 </tr>
             @endforeach
             </tbody>

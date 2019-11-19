@@ -14,7 +14,7 @@
             <fieldset>
                 @foreach (range(1, 5) as $i)
                     <label for="word{{ $i }}">Wort {{ $i }}</label>
-                    <input name="word[]" type="text" value="{{ count($words) >= $i ? $words[$i-1]->word : '' }}">
+                    <input name="word[]" type="text" value="{{ count($words) >= $i ? $words[$i-1]->name : '' }}">
                 @endforeach
                 <button class="button-primary" type="submit">Speichern</button>
             </fieldset>

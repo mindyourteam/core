@@ -4,16 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Wordcloud;
 use App\Word;
+use App\UserWord;
 use Illuminate\Http\Request;
 use lotsofcode\TagCloud\TagCloud;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Builder;
 
 class WordcloudController extends Controller
 {
     public function form(Wordcloud $wordcloud, Request $request)
     {
-        $words = Word::where('user_id', $request->user()->id)
-            ->where('wordcloud_id', $wordcloud->id)
+        $words = Word::where('wordcloud_id', $wordcloud->id)
+            ->whereHas('users', function (Builder $query) use ($request) {
+                $query->where('users.id', $request->user()->id);
+            })
             ->get();
 
         return view('wordcloud.form', [
@@ -26,17 +29,27 @@ class WordcloudController extends Controller
     public function contribute(Wordcloud $wordcloud, Request $request)
     {
         $user = $request->user();
+        $words = collect($request->word)->unique();
 
-        Word::where('user_id', $request->user()->id)
-            ->where('wordcloud_id', $wordcloud->id)
+        UserWord::whereHas('word', function (Builder $query) use ($wordcloud) {
+            $query->where('wordcloud_id', $wordcloud->id);
+        })
+            ->where('user_id', $request->user()->id)
             ->delete();
 
-        foreach ($request->word as $word) {
-            if ($word) {
-                Word::create([
+        Word::where('wordcloud_id', $wordcloud->id)
+            ->doesntHave('users')
+            ->delete();
+
+        foreach ($words as $name) {
+            if ($name) {
+                $word = Word::updateOrCreate([
                     'wordcloud_id' => $wordcloud->id,
+                    'name' => $name,
+                ]);
+                UserWord::create([
+                    'word_id' => $word->id,
                     'user_id' => $user->id,
-                    'word' => $word,
                 ]);
             }
         }
@@ -56,17 +69,22 @@ class WordcloudController extends Controller
             return "<span class='tag' style='font-size:{$font_size}px'>{$title}</span> ";
         });
 
-        $words = $wordcloud->words->map(function($word) {
-            return [
-                'tag' => $word->word,
-            ];
-        })->toArray();
+        $words = UserWord::with('word')
+            ->whereHas('word', function (Builder $query) use ($wordcloud) {
+                $query->where('wordcloud_id', $wordcloud->id);
+            })
+            ->get()->map(function($user_word) {
+                return [
+                    'tag' => $user_word->word->name,
+                ];
+            })->toArray();
         $cloud->addTags($words);
 
-        $sorted = Word::select(DB::raw('word, count(word) as count'))
+        $sorted = Word::with('users')
+            ->withCount('users')
             ->where('wordcloud_id', $wordcloud->id)
-            ->groupBy('word')
-            ->orderBy('count', 'desc')
+            ->orderBy('users_count', 'desc')
+            ->orderBy('name', 'asc')
             ->get();
 
         return view('wordcloud.show', [
