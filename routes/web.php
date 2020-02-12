@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,8 +16,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', function () {
-    return redirect('/wordcloud/1/create');
+Route::get('/home', function (Request $request) {
+    return view('home', [ 'user' => $request->user() ]);
+    //return redirect('/wordcloud/1/create');
 });
 
 Route::get('login', 'LoginController@showLoginForm')->name('login');
@@ -28,4 +30,7 @@ Route::middleware('auth')->group(function () {
     Route::get('wordcloud/{wordcloud}', 'WordcloudController@show')->name('wordcloud.show');
     Route::get('wordcloud/{wordcloud}/create', 'WordcloudController@form')->name('wordcloud.form');
     Route::post('wordcloud/{wordcloud}', 'WordcloudController@contribute')->name('wordcloud.contribute');
+
+    Route::get('product/{productplan}', 'ProductController@index')->name('product');
+    Route::get('topic/{product}', 'TopicController@index')->name('topic');
 });
