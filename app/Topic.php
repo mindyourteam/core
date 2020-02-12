@@ -8,6 +8,7 @@ class Topic extends Model
 {
     protected $fillable = [
         'name',
+        'product_id',
         'description',
         'roadmap',
         'effort',

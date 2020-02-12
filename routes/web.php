@@ -33,5 +33,6 @@ Route::middleware('auth')->group(function () {
     
     Route::get('product/{productplan}', 'ProductController@index')->name('product');
     Route::get('topic/{product}', 'TopicController@index')->name('topic');
-    Route::post('topic/{topic}', 'TopicController@update')->name('topic.update');
+    Route::post('topic/{product}', 'TopicController@store')->name('topic.store');
+    Route::put('topic/{topic}', 'TopicController@update')->name('topic.update');
 });

@@ -40,9 +40,18 @@ class TopicController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Product $product)
     {
-        //
+        $data = $request->json()->all();
+        $data["urgent"] = preg_match('/^d1w\d$/', $data["eisenhower"]) ? "yes" : "no";
+        $data["important"] = preg_match('/^d\dw1$/', $data["eisenhower"]) ? "yes" : "no";
+        $data["product_id"] = $product->id;
+        $topic = Topic::create($data);
+        return response()->json([
+            'status' => 'ok', 
+            'message' => 'Thema gespeichert',
+            'topic' => $topic,
+        ]);
     }
 
     /**
