@@ -16,7 +16,7 @@
     <div class="container">
         @if (session('status'))
             <blockquote>
-                {{ session('status') }}
+                {!! session('status') !!}
             </blockquote>
         @endif
 

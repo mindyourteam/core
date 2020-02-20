@@ -13,6 +13,7 @@ class ImportTopics extends Command
      */
     protected $signature = 'import {--source= : Source directory}';
     protected $dir = Null;
+    protected $data = [];
 
     /**
      * The console command description.
@@ -30,8 +31,6 @@ class ImportTopics extends Command
     {
         parent::__construct();
     }
-
-
 
     /**
      * Execute the console command.
@@ -52,7 +51,10 @@ class ImportTopics extends Command
                 if (!is_dir($dir)) {
                     continue;
                 }
-                echo "$entry\n";
+                $dir_info = $dir . '/.index.yaml';
+                
+
+                $this->readTopics($dir);
             }
 
             closedir($d);
