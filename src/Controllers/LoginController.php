@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Mindyourteam\Core\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
-use App\User;
-use App\Http\Controllers\Auth\LoginController as AuthLoginController;
-use App\Jobs\SendLoginMail;
+use Mindyourteam\Core\Models\User;
+use Mindyourteam\Core\Controllers\Auth\LoginController as AuthLoginController;
+use Mindyourteam\Core\Jobs\SendLoginMail;
 
 class LoginController extends AuthLoginController
 {

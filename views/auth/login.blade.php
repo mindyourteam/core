@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('mindyourteam::layout')
 
 @section('content')
     <div style="margin-top:10%" class="row">

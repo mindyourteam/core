@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Jobs;
+namespace Mindyourteam\Core\Jobs;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -36,7 +36,7 @@ class SendLoginMail implements ShouldQueue
     {
         $user = $this->user;
         $url = $this->url;
-        Mail::send('email-login', [
+        Mail::send('mindyourteam::email-login', [
             'user' => $user,
             'url' => $url,
         ], function ($m) use ($user) {

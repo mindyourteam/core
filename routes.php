@@ -13,11 +13,11 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('mindyourteam::welcome');
 });
 
 Route::get('/home', function (Request $request) {
-    return view('home', [ 'user' => $request->user() ]);
+    return view('mindyourteam::home', [ 'user' => $request->user() ]);
     //return redirect('/wordcloud/1/create');
 });
 
