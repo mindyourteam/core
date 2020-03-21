@@ -13,7 +13,6 @@
             "email": "olav@schettler.net"
         }
     ],
-    "minimum-stability": "dev",
     "require": {
         "php": "^7.2.5",
         "fideloper/proxy": "^4.2",
@@ -23,7 +22,7 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
         "torrix/laravel-ui-uikit": "^3.3",
-        "mindyourteam/core": "@dev"
+        "lotsofcode/tag-cloud": "^4.0"
     },
     "autoload": {
         "psr-4": {

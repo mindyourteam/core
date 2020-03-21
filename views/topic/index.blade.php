@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('mindyourteam::layout')
 
 @section('content')
 <div class="row">

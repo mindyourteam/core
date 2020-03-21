@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Mindyourteam\Core\Controllers;
 
-use App\Wordcloud;
-use App\Word;
-use App\UserWord;
+use App\Http\Controllers\Controller as AppController;
+use Mindyourteam\Core\Models\Wordcloud;
+use Mindyourteam\Core\Models\Word;
+use Mindyourteam\Core\Models\UserWord;
 use Illuminate\Http\Request;
 use lotsofcode\TagCloud\TagCloud;
 use Illuminate\Database\Eloquent\Builder;
 
-class WordcloudController extends Controller
+class WordcloudController extends AppController
 {
     public function form(Wordcloud $wordcloud, Request $request)
     {
@@ -19,7 +20,7 @@ class WordcloudController extends Controller
             })
             ->get();
 
-        return view('wordcloud.form', [
+        return view('mindyourteam::wordcloud.form', [
             'user' => $request->user(),
             'wordcloud' => $wordcloud,
             'words' => $words,
@@ -87,7 +88,7 @@ class WordcloudController extends Controller
             ->orderBy('name', 'asc')
             ->get();
 
-        return view('wordcloud.show', [
+        return view('mindyourteam::wordcloud.show', [
             'wordcloud' => $wordcloud,
             'cloud' => $cloud,
             'sorted' => $sorted,
