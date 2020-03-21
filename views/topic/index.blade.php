@@ -1,15 +1,14 @@
-@extends('mindyourteam::layout')
+@extends('layouts.app')
 
 @section('content')
-<div class="row">
-    <div class="column">
-
+<div class="uk-container">
+    <article class="uk-article uk-margin-top uk-margin-bottom">
         <p><a href="{{ route('product', ['productplan' => $product->productplan_id]) }}">&laquo; zurück</a></p>
 
         <div class="float-right">
             <a href="#" class="icon" onclick="create()">+</a>
         </div>
-        <h1>Themen in {{ $product->name }}</h1>
+        <h1 class="uk-article-title">Themen in {{ $product->name }}</h1>
 
         @forelse ($topics as $topic)
         <ul id="topics">
@@ -29,7 +28,7 @@
             <ul id="topics"></ul>
             <p id="empty">- Keine Themen -</p>
         @endforelse
-    </div>
+    </article>
 </div>
 @endsection
 

@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Mindyourteam\Core\Controllers;
 
-use App\Product;
-use App\Topic;
+use App\Http\Controllers\Controller as AppController;
+use Mindyourteam\Core\Models\Product;
+use Mindyourteam\Core\Models\Topic;
 use Illuminate\Http\Request;
 
-class TopicController extends Controller
+class TopicController extends AppController
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +19,7 @@ class TopicController extends Controller
         $topics = Topic::where('product_id', $product->id)
             ->orderBy('name')
             ->paginate();
-        return view('topic.index', [
+        return view('mindyourteam::topic.index', [
             'topics' => $topics,
             'product' => $product,
         ]);

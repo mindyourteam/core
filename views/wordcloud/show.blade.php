@@ -1,17 +1,19 @@
-@extends('mindyourteam::layout')
+@extends('layouts.app')
 
 @section('content')
-<div class="row">
-    <div class="column">
-        <h1>{{ $wordcloud->title }}</h1>
+<div class="uk-container">
+    <article class="uk-article uk-margin-top uk-margin-bottom">
+        <h1 class="uk-article-title">{{ $wordcloud->title }}</h1>
 
         <p>Hier ist die Wortwolke:</p>
 
-        <p class="cloud">
+        <div class="uk-card uk-card-default uk-card-body cloud">
             {!! $cloud->render() !!}
-        </p>
+        </div>
 
-        <table>
+        <p>Und hier sind die einzelnen Rollen:</p>
+
+        <table class="uk-table uk-table-divider">
             <thead>
                 <tr><td>#</td><th>Wort</th><th>Anzahl</th><th>Nutzer</th></tr>
             </thead>
@@ -28,6 +30,6 @@
         </table>
 
         <p>Psst! Wenn du magst, kannst du deine Eingaben noch <a href="{{ route('wordcloud.form', $wordcloud) }}">ändern</a>.</p> 
-    </div>
+    </article>
 </div>
 @endsection

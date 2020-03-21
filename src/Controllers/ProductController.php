@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Mindyourteam\Core\Controllers;
 
-use App\Product;
-use App\Productplan;
+use App\Http\Controllers\Controller as AppController;
+use Mindyourteam\Core\Models\Product;
+use Mindyourteam\Core\Models\Productplan;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class ProductController extends AppController
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +19,7 @@ class ProductController extends Controller
         $products = Product::where('productplan_id', $productplan->id)
             ->orderBy('name')
             ->paginate();
-        return view('product.index', [
+        return view('mindyourteam::product.index', [
             'products' => $products,
             'productplan' => $productplan,
         ]);
