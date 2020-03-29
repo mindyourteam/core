@@ -5,11 +5,8 @@
     <article class="uk-article uk-margin-top uk-margin-bottom">
         <h1 class="uk-article-title">::PDP:: Werkzeuge</h1>
 
-        <p>Was möchtest du tun?</p>
+        <p>Was möchtest du tun? Bitte wähle eine Funktion über das Hamburgermenü oben links aus.</p>
 
-        <h2>Weitere Funktionen</h2>
-        <ul>
-        </ul>
         <h2>Produktplanung publizieren</h2>
         <p>Veröffentlichen der Eingangsdaten von &amp; nach Confluence.</p>
         <form method="POST" action="{{ route('plan.publish') }}">

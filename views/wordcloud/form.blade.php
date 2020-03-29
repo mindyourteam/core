@@ -5,6 +5,9 @@
     <article class="uk-article uk-margin-top uk-margin-bottom">
         <h1 class="uk-article-title">{{ $wordcloud->title }}</h1>
 
+        <blockquote>Eine Anleitung zu dieser Funktion findest du <a
+            href="https://confluence.dw.com/pages/viewpage.action?pageId=170739810">in Confluence</a>.</blockquote>
+
         {!! $wordcloud->instructions !!}
 
         <form method="POST" action="{{ route('wordcloud.contribute', $wordcloud) }}">
