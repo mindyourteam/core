@@ -37,4 +37,6 @@ Route::middleware('auth')->group(function () {
     Route::put('topic/{topic}', 'TopicController@update')->name('topic.update');
 
     Route::post('publish', 'ProductplanController@publish')->name('plan.publish');
+
+    Route::get('culture', 'CultureQuestions@index')->name('culture');
 });

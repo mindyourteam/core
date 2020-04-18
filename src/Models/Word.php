@@ -3,6 +3,7 @@
 namespace Mindyourteam\Core\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\User;
 
 class Word extends Model
 {

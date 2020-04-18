@@ -17,7 +17,7 @@ class ServiceProvider extends IlluminateServiceProvider
 
     public function boot()
     {
-        $this->loadMigrationsFrom(__DIR__ . '/../migrations');
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
 
         $this->mergeConfigRecursiveFrom(
             __DIR__ . '/../config.php', 'mindyourteam'
