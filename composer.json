@@ -23,7 +23,8 @@
         "laravel/ui": "^2.0",
         "torrix/laravel-ui-uikit": "^3.3",
         "lotsofcode/tag-cloud": "^4.0",
-        "symfony/yaml": "^5.0"
+        "symfony/yaml": "^5.0",
+        "doctrine/dbal": "^2.10"
     },
     "autoload": {
         "psr-4": {

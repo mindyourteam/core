@@ -38,5 +38,5 @@ Route::middleware('auth')->group(function () {
 
     Route::post('publish', 'ProductplanController@publish')->name('plan.publish');
 
-    Route::get('culture', 'CultureQuestions@index')->name('culture');
+    Route::get('culture', 'CultureQuestionController@index')->name('culture');
 });

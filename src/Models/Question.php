@@ -29,4 +29,9 @@ class Question extends Model
     {
         return $this->belongsTo(Blueprint::class);
     }
+
+    function answers()
+    {
+        return $this->hasMany(Answer::class);
+    }
 }

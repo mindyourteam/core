@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Mindyourteam\Core\Console\Commands\ImportTopics;
+use Mindyourteam\Core\Console\Commands\ClientQuestions;
+use Illuminate\Pagination\Paginator;
 
 class ServiceProvider extends IlluminateServiceProvider
 {
@@ -23,6 +26,15 @@ class ServiceProvider extends IlluminateServiceProvider
             __DIR__ . '/../config.php', 'mindyourteam'
         );
         $this->loadViewsFrom(__DIR__ . '/../views', 'mindyourteam');
+
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                ImportTopics::class,
+                ClientQuestions::class,
+            ]);
+        }
+        
+        Paginator::defaultView('mindyourteam::partials.pagination');
     }
 
     public function register()
