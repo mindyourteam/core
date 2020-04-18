@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCultureQuestionsTable extends Migration
+class CreateQuestionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateCultureQuestionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('culture_questions', function (Blueprint $table) {
+        Schema::create('questions', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('blueprint_id');
             $table->foreign('blueprint_id')->references('id')->on('blueprints');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->enum('lang', ['de', 'en']);
-            $table->enum('type', ['yesno']);
+            $table->enum('type', ['yesno', '1to5', '1to10', 'text']);
             $table->string('min');
             $table->string('max');
             $table->text('body');

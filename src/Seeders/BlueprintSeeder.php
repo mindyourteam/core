@@ -18,7 +18,8 @@ class BlueprintSeeder extends Seeder
         $path = __DIR__ . '/../../database/seeds/blueprints-en.yaml';
         $seeds = Yaml::parseFile($path);
         foreach ($seeds as $record) {
-            $this->info($record['body']);
+            $record['source'] = 'tinypulse.com 50 must have questions';
+            $this->command->info(' - ' . $record['body']);
             Blueprint::create($record);
         }
     }
