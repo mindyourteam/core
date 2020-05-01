@@ -66,7 +66,13 @@
             </div>
             <div class="question-change">
                 <div>
-                    <button class="uk-button uk-button-primary">Ändere die nächsten Fragen</button>
+                    <button class="uk-button uk-button-primary uk-visible@s">
+                        <span class="uk-margin-small-right uk-icon" uk-icon="settings"></span>
+                        Ändere die nächsten Fragen
+                    </button>
+                    <button class="uk-button uk-button-primary uk-hidden@s">
+                        <span class="uk-icon" uk-icon="settings"></span>
+                    </button>
                 </div>
                 <div class="uk-text-center uk-margin-small-top">
                     <a href="">Fragen pausieren</a>

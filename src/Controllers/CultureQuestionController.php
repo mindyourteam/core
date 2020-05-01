@@ -24,13 +24,14 @@ class CultureQuestionController extends Controller
             ->orderBy('planned_at', 'desc')
             ->paginate();
 
-            $next_question = Question::leftJoin(
-                    'blueprints', 'questions.blueprint_id', '=', 'blueprints.id')
-                ->where('user_id', $request->user()->id)
-                ->where('blueprints.category', 'culture')
-                ->whereRaw('planned_at > NOW()')
-                ->orderBy('planned_at', 'asc')
-                ->first();
+        $next_question = Question::leftJoin(
+                'blueprints', 'questions.blueprint_id', '=', 'blueprints.id')
+            ->where('user_id', $request->user()->id)
+            ->where('blueprints.category', 'culture')
+            ->whereRaw('planned_at > NOW()')
+            ->orderBy('planned_at', 'asc')
+            ->first();
+
         return view('mindyourteam::culture.index', [
             'questions' => $questions,
             'next_question' => $next_question,
