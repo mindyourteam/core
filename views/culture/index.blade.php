@@ -64,19 +64,19 @@
                 <p class="prompt">Die nächste Frage, die wir stellen werden:</p>
                 <p class="text">{{ $next_question->body }}</p>
             </div>
-            <div class="question-change">
+            <div class="question-change uk-visible@s">
                 <div>
-                    <button class="uk-button uk-button-primary uk-visible@s">
+                    <button class="uk-button uk-button-primary">
                         <span class="uk-margin-small-right uk-icon" uk-icon="settings"></span>
                         Ändere die nächsten Fragen
-                    </button>
-                    <button class="uk-button uk-button-primary uk-hidden@s">
-                        <span class="uk-icon" uk-icon="settings"></span>
                     </button>
                 </div>
                 <div class="uk-text-center uk-margin-small-top">
                     <a href="">Fragen pausieren</a>
                 </div>
+            </div>
+            <div class="question-change uk-margin-right uk-hidden@s">
+                <button class="uk-button uk-button-primary uk-icon" uk-icon="settings"></button>
             </div>
         </div>
 
