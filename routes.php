@@ -27,16 +27,28 @@ Route::post('login', 'LoginController@login')->name('authenticate');
 Route::get('login/{token}', 'LoginController@withToken')->name('withtoken');
 
 Route::middleware('auth')->group(function () {
+    /*
+     * Wordcloud
+     */
     Route::get('wordcloud/{wordcloud}', 'WordcloudController@show')->name('wordcloud.show');
     Route::get('wordcloud/{wordcloud}/create', 'WordcloudController@form')->name('wordcloud.form');
     Route::post('wordcloud/{wordcloud}', 'WordcloudController@contribute')->name('wordcloud.contribute');
     
-    Route::get('product/{productplan}', 'ProductController@index')->name('product');
-    Route::get('topic/{product}', 'TopicController@index')->name('topic');
-    Route::post('topic/{product}', 'TopicController@store')->name('topic.store');
-    Route::put('topic/{topic}', 'TopicController@update')->name('topic.update');
+    /*
+     * Product planning
+     */
+    if (config('mindyourteam.feature.product-planning', true)) {
+        Route::get('product/{productplan}', 'ProductController@index')->name('product');
+        Route::get('topic/{product}', 'TopicController@index')->name('topic');
+        Route::post('topic/{product}', 'TopicController@store')->name('topic.store');
+        Route::put('topic/{topic}', 'TopicController@update')->name('topic.update');
 
-    Route::post('publish', 'ProductplanController@publish')->name('plan.publish');
+        Route::post('publish', 'ProductplanController@publish')->name('plan.publish');
+    }
 
+    /*
+     * Culture questions
+     */
     Route::get('culture', 'CultureQuestionController@index')->name('culture');
+    Route::get('culture/upcoming', 'CultureQuestionController@upcoming')->name('culture.upcoming');
 });

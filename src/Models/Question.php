@@ -20,6 +20,17 @@ class Question extends Model
         'planned_at'
     ];
 
+    function getPrintableTypeAttribute($value)
+    {
+        $printable_type = [
+            'yesno' => 'Ja/Nein-Frage',
+            '1to5' => 'Wertung (1..5)',
+            '1to10' => 'Punkte (1..10)',
+            'text' => 'Freitext',
+        ];
+        return $printable_type[$this->type];
+    }
+
     function user()
     {
         return $this->belongsTo(User::class);

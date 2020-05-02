@@ -1,2 +1,6 @@
 <?php
-return [];
+return [
+    'feature' => [
+        'product-planning' => false
+    ]
+];

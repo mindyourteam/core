@@ -20,9 +20,9 @@ class CultureQuestionController extends Controller
                 'blueprints', 'questions.blueprint_id', '=', 'blueprints.id')
             ->where('user_id', $request->user()->id)
             ->where('blueprints.category', 'culture')
-            ->whereRaw('planned_at < NOW()')
+            ->whereRaw('planned_at <= NOW()')
             ->orderBy('planned_at', 'desc')
-            ->paginate();
+            ->paginate(5);
 
         $next_question = Question::leftJoin(
                 'blueprints', 'questions.blueprint_id', '=', 'blueprints.id')
@@ -34,6 +34,32 @@ class CultureQuestionController extends Controller
 
         return view('mindyourteam::culture.index', [
             'questions' => $questions,
+            'next_question' => $next_question,
+        ]);
+    }
+
+    public function upcoming(Request $request)
+    {
+        $questions = Question::with('answers')
+            ->leftJoin(
+                'blueprints', 'questions.blueprint_id', '=', 'blueprints.id')
+            ->where('user_id', $request->user()->id)
+            ->where('blueprints.category', 'culture')
+            ->whereRaw('planned_at > NOW()')
+            ->orderBy('planned_at', 'asc')
+            ->paginate(5);
+
+
+        $next_question = Question::leftJoin(
+                'blueprints', 'questions.blueprint_id', '=', 'blueprints.id')
+            ->where('user_id', $request->user()->id)
+            ->where('blueprints.category', 'culture')
+            ->whereRaw('planned_at > NOW()')
+            ->orderBy('planned_at', 'asc')
+            ->first();
+
+        return view('mindyourteam::culture.upcoming', [
+            'questions' => $questions,            
             'next_question' => $next_question,
         ]);
     }
