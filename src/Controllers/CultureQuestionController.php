@@ -41,6 +41,7 @@ class CultureQuestionController extends Controller
     public function upcoming(Request $request)
     {
         $questions = Question::with('answers')
+            ->select('questions.*')
             ->leftJoin(
                 'blueprints', 'questions.blueprint_id', '=', 'blueprints.id')
             ->where('user_id', $request->user()->id)
@@ -87,7 +88,7 @@ class CultureQuestionController extends Controller
      * @param  \App\CultureQuestion  $cultureQuestion
      * @return \Illuminate\Http\Response
      */
-    public function show(CultureQuestion $question)
+    public function show(Question $question)
     {
         //
     }
@@ -98,7 +99,7 @@ class CultureQuestionController extends Controller
      * @param  \App\CultureQuestion  $cultureQuestion
      * @return \Illuminate\Http\Response
      */
-    public function edit(CultureQuestion $question)
+    public function edit(Question $question)
     {
         //
     }
@@ -110,7 +111,7 @@ class CultureQuestionController extends Controller
      * @param  \App\CultureQuestion  $cultureQuestion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CultureQuestion $question)
+    public function update(Request $request, Question $question)
     {
         $data = $request->json()->all();
         $question->update($data);
@@ -127,7 +128,7 @@ class CultureQuestionController extends Controller
      * @param  \App\CultureQuestion  $cultureQuestion
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CultureQuestion $cultureQuestion)
+    public function destroy(Question $cultureQuestion)
     {
         //
     }
