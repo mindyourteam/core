@@ -4,6 +4,7 @@ namespace Mindyourteam\Core\Controllers;
 
 use App\Http\Controllers\Controller;
 use Mindyourteam\Core\Models\Question;
+use Mindyourteam\Core\Resources\QuestionResource;
 use Illuminate\Http\Request;
 
 class CultureQuestionController extends Controller
@@ -78,7 +79,7 @@ class CultureQuestionController extends Controller
         return response()->json([
             'status' => 'ok', 
             'message' => 'Frage gespeichert',
-            'question' => $question,
+            'question' => new QuestionResource($question),
         ]);
     }
 
@@ -118,7 +119,7 @@ class CultureQuestionController extends Controller
         return response()->json([
             'status' => 'ok', 
             'message' => 'Frage gespeichert',
-            'question' => $question,
+            'question' => new QuestionResource($question),
         ]);
     }
 
