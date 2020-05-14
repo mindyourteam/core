@@ -61,7 +61,7 @@
                 <p class="text">{{ $question->body }}</p>
                 <p class="action">Stelle diese Frage <a href="#" onclick="next({{ $question->id }})">als nächstes</a>, 
                     <a href="#" onclick="edit(JSON.parse(document.getElementById('question-{{ $question->id }}').dataset.question))">bearbeite</a> 
-                    oder <a href="">lösche</a> sie.</p>
+                    oder <a href="#" onclick="del({{ $question->id }})">lösche</a> sie.</p>
             </div>
         </div>
         @empty

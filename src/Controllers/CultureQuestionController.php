@@ -122,7 +122,7 @@ class CultureQuestionController extends Controller
             'planned_at' => $planned_at->toDateTimeString(),
         ]);
 
-        foreach ($questions as $i => $q) {
+        foreach ($questions as $q) {
             if ($q->id == $question->id) {
                 continue;
             }
@@ -163,8 +163,34 @@ class CultureQuestionController extends Controller
      * @param  \App\CultureQuestion  $cultureQuestion
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Question $cultureQuestion)
+    public function destroy(Request $request, Question $question)
     {
-        //
+        $question->delete();
+
+        $questions = Question::select('questions.*')
+            ->leftJoin(
+                'blueprints', 'questions.blueprint_id', '=', 'blueprints.id')
+            ->where('user_id', $request->user()->id)
+            ->where('blueprints.category', 'culture')
+            ->whereRaw('planned_at > NOW()')
+            ->orderBy('planned_at', 'asc')
+            ->get();
+        
+        $planned_at = Carbon::parse('next wednesday');
+        $planned_at->tz = 'Europe/Berlin';
+        $planned_at->hour = 8;
+        $planned_at->minute = 30;
+
+        foreach ($questions as $q) {
+            $q->update([
+                'planned_at' => $planned_at->toDateTimeString(),
+            ]);
+            $planned_at->addWeek();
+        }
+
+        return response()->json([
+            'status' => 'ok', 
+            'message' => 'Frage gelöscht',
+        ]);
     }
 }

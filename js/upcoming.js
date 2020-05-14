@@ -126,3 +126,22 @@ function next(question_id) {
         location.reload();
     });
 }
+
+
+function del(question_id) {
+    const csrf = document.getElementById('overlay-text')._token.value;
+
+    fetch('/culture/' + question_id + '/del', {
+        method: 'POST', 
+        headers: {
+            'X-CSRF-TOKEN': csrf,
+            'Concent-Type': 'application/json',
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log("Del:", data);
+        sessionStorage.setItem('flash', data.message);
+        location.reload();
+    });
+}
