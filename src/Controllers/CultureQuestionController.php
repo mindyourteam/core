@@ -7,6 +7,8 @@ use Mindyourteam\Core\Models\Question;
 use Mindyourteam\Core\Resources\QuestionResource;
 use Illuminate\Http\Request;
 
+use Carbon\Carbon;
+
 class CultureQuestionController extends Controller
 {
     /**
@@ -95,15 +97,47 @@ class CultureQuestionController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Move the question to be the next one asked.
      *
      * @param  \App\CultureQuestion  $cultureQuestion
      * @return \Illuminate\Http\Response
      */
-    public function edit(Question $question)
+    public function next(Request $request, Question $question)
     {
-        //
-    }
+        $questions = Question::select('questions.*')
+            ->leftJoin(
+                'blueprints', 'questions.blueprint_id', '=', 'blueprints.id')
+            ->where('user_id', $request->user()->id)
+            ->where('blueprints.category', 'culture')
+            ->whereRaw('planned_at > NOW()')
+            ->orderBy('planned_at', 'asc')
+            ->get();
+        
+        $planned_at = Carbon::parse('next wednesday');
+        $planned_at->tz = 'Europe/Berlin';
+        $planned_at->hour = 8;
+        $planned_at->minute = 30;
+
+        $question->update([
+            'planned_at' => $planned_at->toDateTimeString(),
+        ]);
+
+        foreach ($questions as $i => $q) {
+            if ($q->id == $question->id) {
+                continue;
+            }
+
+            $planned_at->addWeek();
+            $q->update([
+                'planned_at' => $planned_at->toDateTimeString(),
+            ]);
+        }
+
+        return response()->json([
+            'status' => 'ok', 
+            'message' => 'Fragen neu sortiert',
+        ]);
+     }
 
     /**
      * Update the specified resource in storage.

@@ -53,4 +53,5 @@ Route::middleware('auth')->group(function () {
     Route::get('culture/upcoming', 'CultureQuestionController@upcoming')->name('culture.upcoming');
     Route::put('culture/{question}', 'CultureQuestionController@update')->name('culture.update');
     Route::post('culture/{question}', 'CultureQuestionController@store')->name('culture.store');
+    Route::post('culture/{question}/next', 'CultureQuestionController@next')->name('culture.next');
 });

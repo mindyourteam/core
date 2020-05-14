@@ -33,6 +33,10 @@ class ServiceProvider extends IlluminateServiceProvider
                 ClientQuestions::class,
             ]);
         }
+
+        $this->publishes([
+            __DIR__.'/../js/upcoming.js' => public_path('vendor/mindyourteam/upcoming.js'),
+        ], 'public');    
         
         Paginator::defaultView('mindyourteam::partials.pagination');
     }

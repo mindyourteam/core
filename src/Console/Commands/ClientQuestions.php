@@ -21,7 +21,7 @@ class ClientQuestions extends Command
      *
      * @var string
      */
-    protected $description = 'For a specific client, create their clients from blueprints';
+    protected $description = 'For a specific client, create their questions from blueprints';
 
     /**
      * Create a new command instance.
