@@ -49,18 +49,8 @@ class CultureQuestionController extends Controller
             ->orderBy('planned_at', 'asc')
             ->paginate(5);
 
-
-        $next_question = Question::leftJoin(
-                'blueprints', 'questions.blueprint_id', '=', 'blueprints.id')
-            ->where('user_id', $request->user()->id)
-            ->where('blueprints.category', 'culture')
-            ->whereRaw('planned_at > NOW()')
-            ->orderBy('planned_at', 'asc')
-            ->first();
-
         return view('mindyourteam::culture.upcoming', [
-            'questions' => $questions,            
-            'next_question' => $next_question,
+            'questions' => $questions,
         ]);
     }
 
@@ -82,7 +72,13 @@ class CultureQuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->json()->all();
+        $question = Question::create($data);
+        return response()->json([
+            'status' => 'ok', 
+            'message' => 'Frage gespeichert',
+            'question' => $question,
+        ]);
     }
 
     /**
@@ -91,7 +87,7 @@ class CultureQuestionController extends Controller
      * @param  \App\CultureQuestion  $cultureQuestion
      * @return \Illuminate\Http\Response
      */
-    public function show(CultureQuestion $cultureQuestion)
+    public function show(CultureQuestion $question)
     {
         //
     }
@@ -102,7 +98,7 @@ class CultureQuestionController extends Controller
      * @param  \App\CultureQuestion  $cultureQuestion
      * @return \Illuminate\Http\Response
      */
-    public function edit(CultureQuestion $cultureQuestion)
+    public function edit(CultureQuestion $question)
     {
         //
     }
@@ -114,9 +110,15 @@ class CultureQuestionController extends Controller
      * @param  \App\CultureQuestion  $cultureQuestion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CultureQuestion $cultureQuestion)
+    public function update(Request $request, CultureQuestion $question)
     {
-        //
+        $data = $request->json()->all();
+        $question->update($data);
+        return response()->json([
+            'status' => 'ok', 
+            'message' => 'Frage gespeichert',
+            'question' => $question,
+        ]);
     }
 
     /**
