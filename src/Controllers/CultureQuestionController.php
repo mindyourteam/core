@@ -19,18 +19,14 @@ class CultureQuestionController extends Controller
     public function index(Request $request)
     {
         $questions = Question::with('answers')
-            ->leftJoin(
-                'blueprints', 'questions.blueprint_id', '=', 'blueprints.id')
             ->where('user_id', $request->user()->id)
-            ->where('blueprints.category', 'culture')
+            ->where('category', 'culture')
             ->whereRaw('planned_at <= NOW()')
             ->orderBy('planned_at', 'desc')
             ->paginate(5);
 
-        $next_question = Question::leftJoin(
-                'blueprints', 'questions.blueprint_id', '=', 'blueprints.id')
-            ->where('user_id', $request->user()->id)
-            ->where('blueprints.category', 'culture')
+        $next_question = Question::where('user_id', $request->user()->id)
+            ->where('category', 'culture')
             ->whereRaw('planned_at > NOW()')
             ->orderBy('planned_at', 'asc')
             ->first();
@@ -44,11 +40,8 @@ class CultureQuestionController extends Controller
     public function upcoming(Request $request)
     {
         $questions = Question::with('answers')
-            ->select('questions.*')
-            ->leftJoin(
-                'blueprints', 'questions.blueprint_id', '=', 'blueprints.id')
             ->where('user_id', $request->user()->id)
-            ->where('blueprints.category', 'culture')
+            ->where('category', 'culture')
             ->whereRaw('planned_at > NOW()')
             ->orderBy('planned_at', 'asc')
             ->paginate(5);
@@ -56,16 +49,6 @@ class CultureQuestionController extends Controller
         return view('mindyourteam::culture.upcoming', [
             'questions' => $questions,
         ]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -77,23 +60,20 @@ class CultureQuestionController extends Controller
     public function store(Request $request)
     {
         $data = $request->json()->all();
-        $question = Question::create($data);
-        return response()->json([
-            'status' => 'ok', 
-            'message' => 'Frage gespeichert',
-            'question' => new QuestionResource($question),
-        ]);
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\CultureQuestion  $cultureQuestion
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Question $question)
-    {
-        //
+        if (in_array($data['type'], ['yesno', 'text'])) {
+            $data['min'] = $data['max'] = null;
+        }
+
+        $question = Question::create([
+            'blueprint_id' => null,
+            'category' => 'culture',
+            'user_id' => $request->user()->id,
+            'lang' => config('app.locale'),
+            'planned_at' => Carbon::now()->toDateTimeString(),
+        ] + $data);
+
+        return $this->next($request, $question);
     }
 
     /**
@@ -104,11 +84,8 @@ class CultureQuestionController extends Controller
      */
     public function next(Request $request, Question $question)
     {
-        $questions = Question::select('questions.*')
-            ->leftJoin(
-                'blueprints', 'questions.blueprint_id', '=', 'blueprints.id')
-            ->where('user_id', $request->user()->id)
-            ->where('blueprints.category', 'culture')
+        $questions = Question::where('user_id', $request->user()->id)
+            ->where('category', 'culture')
             ->whereRaw('planned_at > NOW()')
             ->orderBy('planned_at', 'asc')
             ->get();
@@ -135,7 +112,8 @@ class CultureQuestionController extends Controller
 
         return response()->json([
             'status' => 'ok', 
-            'message' => 'Fragen neu sortiert',
+            'message' => 'Die Frage wird als nächstes gestellt',
+            'question' => new QuestionResource($question),
         ]);
      }
 
@@ -167,11 +145,8 @@ class CultureQuestionController extends Controller
     {
         $question->delete();
 
-        $questions = Question::select('questions.*')
-            ->leftJoin(
-                'blueprints', 'questions.blueprint_id', '=', 'blueprints.id')
-            ->where('user_id', $request->user()->id)
-            ->where('blueprints.category', 'culture')
+        $questions = Question::where('user_id', $request->user()->id)
+            ->where('category', 'culture')
             ->whereRaw('planned_at > NOW()')
             ->orderBy('planned_at', 'asc')
             ->get();

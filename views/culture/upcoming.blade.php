@@ -40,12 +40,23 @@
 @section('content')
 <div class="uk-container">
     <article class="uk-article uk-margin-top uk-margin-bottom upcoming">
-        <h1 class="uk-article-title">Fragen zur Teamkultur</h1>
+
+        <ul class="uk-breadcrumb">
+            <li><a href="{{ route('culture') }}">Fragen zur Teamkultur</a></li>
+            <li><span>Nächste Fragen</span></li>
+        </ul>
+
+        <h1 class="uk-article-title">Nächste Fragen</h1>
+
+        <a class="uk-float-right uk-button uk-button-primary" href="#" onclick="create()">
+            <span class="uk-margin-small-right uk-icon" uk-icon="plus-circle"></span>
+            Neue Frage
+        </a>
 
         <p>Diese Fragen stellen wir einmal in der Woche Mittwoch um 08:30 Uhr - <a href="">Einstellungen ändern</a>.<br class="uk-visible@s">
             Nur du kannst die privaten Antworten sehen - <a href="">Berechtigungen ändern</a>.
 
-        @forelse ($questions as $question)
+        @forelse ($questions as $i => $question)
         <div class="question prev">
             <?php
             $plan = \Carbon\Carbon::parse($question->planned_at);
@@ -56,12 +67,20 @@
             </div>
             <div class="question-body"
                     id="question-{{ $question->id }}" 
-                    data-question="{{ json_encode($question) }}">
+                    data-question="{{ json_encode($question) }}"
+                    data-seq="{{ $i }}">
                 <div class="type">{{ $question->printable_type }}</div>
                 <p class="text">{{ $question->body }}</p>
-                <p class="action">Stelle diese Frage <a href="#" onclick="next({{ $question->id }})">als nächstes</a>, 
+                <p class="action">
+                @if ($i == 0)
+                    <a href="#" onclick="edit(JSON.parse(document.getElementById('question-{{ $question->id }}').dataset.question))">Bearbeite</a> 
+                    diese Frage oder <a href="#" onclick="del({{ $question->id }})">lösche</a> sie.
+                @else
+                    Stelle diese Frage <a href="#" onclick="next({{ $question->id }})">als nächstes</a>,
                     <a href="#" onclick="edit(JSON.parse(document.getElementById('question-{{ $question->id }}').dataset.question))">bearbeite</a> 
-                    oder <a href="#" onclick="del({{ $question->id }})">lösche</a> sie.</p>
+                    oder <a href="#" onclick="del({{ $question->id }})">lösche</a> sie.
+                @endif
+                </p>
             </div>
         </div>
         @empty
@@ -77,7 +96,7 @@
 
 @section('footer')
 <div id="overlay" uk-modal>
-    <form id="overlay-text" class="uk-modal-dialog uk-modal-body" onsubmit="save()">
+    <form id="overlay-text" class="uk-modal-dialog uk-modal-body" onsubmit="save(event)">
         @csrf
         <h2>Frage <span id="verb"></span></h2>
         <button class="uk-modal-close-default" type="button" uk-close></button>

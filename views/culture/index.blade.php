@@ -5,6 +5,11 @@
 @section('content')
 <div class="uk-container">
     <article class="uk-article uk-margin-top uk-margin-bottom">
+
+        <ul class="uk-breadcrumb">
+            <li><span>Fragen zur Teamkultur</span></li>
+        </ul>
+
         <h1 class="uk-article-title">Fragen zur Teamkultur</h1>
 
         <p>Diese Fragen stellen wir einmal in der Woche Mittwoch um 08:30 Uhr - <a href="">Einstellungen ändern</a>.<br class="uk-visible@s">
