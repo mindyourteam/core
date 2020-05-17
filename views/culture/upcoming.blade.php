@@ -60,6 +60,7 @@
         <div class="question prev">
             <?php
             $plan = \Carbon\Carbon::parse($question->planned_at);
+            $seq = $questions->firstItem() + $i;
             ?>
             <div class="question-date">
                 <div>{{ $plan->day }}.</div>
@@ -68,11 +69,11 @@
             <div class="question-body"
                     id="question-{{ $question->id }}" 
                     data-question="{{ json_encode($question) }}"
-                    data-seq="{{ $i }}">
+                    data-seq="{{ $seq }}">
                 <div class="type">{{ $question->printable_type }}</div>
                 <p class="text">{{ $question->body }}</p>
                 <p class="action">
-                @if ($i == 0)
+                @if ($seq == 1)
                     <a href="#" onclick="edit(JSON.parse(document.getElementById('question-{{ $question->id }}').dataset.question))">Bearbeite</a> 
                     diese Frage oder <a href="#" onclick="del({{ $question->id }})">lösche</a> sie.
                 @else

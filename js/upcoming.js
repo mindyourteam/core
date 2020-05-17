@@ -45,7 +45,7 @@ function item_text(question, seq) {
     const result = `<div class="type">${question.printable_type}</div>
             <p class="text">${question.body}</p>`;
 
-    if (seq == '0') {
+    if (seq == '1') {
         return result + `<p class="action"><a href="#" onclick="edit(JSON.parse(document.getElementById('question-${question.id}').dataset.question))">Bearbeite</a> 
         diese Frage oder <a href="#" onclick="del(${question.id})">lösche</a> sie.</p>
 `
