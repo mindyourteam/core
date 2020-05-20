@@ -26,6 +26,8 @@ Route::get('logout', 'LoginController@logout')->name('logout');
 Route::post('login', 'LoginController@login')->name('authenticate');
 Route::get('login/{token}', 'LoginController@withToken')->name('withtoken');
 
+Route::get('answer/{question}/{token}', 'AnswerController@withtoken')->name('answer.withtoken');
+
 Route::middleware('auth')->group(function () {
     /*
      * Wordcloud
@@ -55,4 +57,10 @@ Route::middleware('auth')->group(function () {
     Route::post('culture', 'CultureQuestionController@store')->name('culture.store');
     Route::post('culture/{question}/next', 'CultureQuestionController@next')->name('culture.next');
     Route::post('culture/{question}/del', 'CultureQuestionController@destroy')->name('culture.del');
+
+    /*
+     * Answers
+     */
+    Route::get('answer/{question}', 'AnswerController@index')->name('answer');
+    Route::post('answer', 'AnswerController@store')->name('answer.store');
 });

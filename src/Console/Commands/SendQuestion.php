@@ -56,9 +56,19 @@ class SendQuestion extends Command
             }
             $info->info(" - {$user->email}");
 
+            $token = Str::random(60);
+            $user->setRememberToken($token);
+            $user->save();
+    
+            $url = route('answer.withtoken', [
+                'question' => $question,
+                'token' => $token
+            ]);
+
             Mail::send('mindyourteam::email-question', [
                 'user' => $user,
                 'question' => $question,
+                'url' => $url,
             ], function ($m) use ($user) {
                 $m->from('hello@' . env('MAIL_DOMAIN'), config('app.name'));
                 $m->to($user->email)->subject(
