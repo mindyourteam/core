@@ -5,7 +5,7 @@ namespace Mindyourteam\Core\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
-use Mindyourteam\Core\Models\User;
+use App\User;
 use Mindyourteam\Core\Controllers\Auth\LoginController as AuthLoginController;
 use Mindyourteam\Core\Jobs\SendLoginMail;
 
