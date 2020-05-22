@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Mindyourteam\Core\Models\Question;
 use Mindyourteam\Core\Models\Answer;
 use Illuminate\Http\Request;
+use Mindyourteam\Core\Models\Team;
 use Illuminate\Support\Facades\Auth;
 
 class AnswerController extends Controller
@@ -51,8 +52,8 @@ class AnswerController extends Controller
         $input = $request->all();
         $answer = Answer::firstOrCreate([
             'user_id' => $request->user()->id,
-            'question_id' => $request->question_id,
+            'question_id' => $question->id,
         ], $input);
-        return redirect('culture')->with('success', 'Antwort gespeichert.'); 
+        return redirect()->route('culture.show', [$question])->with('success', 'Antwort gespeichert.'); 
     }
 }

@@ -15,35 +15,37 @@
         <p>Diese Fragen stellen wir einmal in der Woche am Mittwoch um 08:30 Uhr.<!-- - <a href="">Einstellungen ändern</a>.<br class="uk-visible@s">
             <!-- Nur du kannst die privaten Antworten sehen - <a href="">Berechtigungen ändern</a>. -->
 
-        <div class="question next">
-            <?php
-            $plan = \Carbon\Carbon::parse($next_question->planned_at);
-            ?>
-            <div class="question-date">
-                <div>{{ $plan->day }}.</div>
-                <div>{{ $plan->locale('de')->monthName }}</div>
-            </div>
-            <div class="question-body">
-                <p class="prompt">Die nächste Frage, die wir stellen werden:</p>
-                <p class="text">{{ $next_question->body }}</p>
-            </div>
-            <div class="question-change uk-visible@s">
-                <div>
-                    <a class="uk-button uk-button-primary" 
-                            href="{{ route('culture.upcoming') }}">
-                        <span class="uk-margin-small-right uk-icon" uk-icon="settings"></span>
-                        Ändere die nächsten Fragen
-                    </a>
+        @if ($is_lead)
+            <div class="question next">
+                <?php
+                $plan = \Carbon\Carbon::parse($next_question->planned_at);
+                ?>
+                <div class="question-date">
+                    <div>{{ $plan->day }}.</div>
+                    <div>{{ $plan->locale('de')->monthName }}</div>
                 </div>
-                <!--div class="uk-text-center uk-margin-small-top">
-                    <a href="">Fragen pausieren</a>
-                </div-->
+                <div class="question-body">
+                    <p class="prompt">Die nächste Frage, die wir stellen werden:</p>
+                    <p class="text">{{ $next_question->body }}</p>
+                </div>
+                <div class="question-change uk-visible@s">
+                    <div>
+                        <a class="uk-button uk-button-primary" 
+                                href="{{ route('culture.upcoming') }}">
+                            <span class="uk-margin-small-right uk-icon" uk-icon="settings"></span>
+                            Ändere die nächsten Fragen
+                        </a>
+                    </div>
+                    <!--div class="uk-text-center uk-margin-small-top">
+                        <a href="">Fragen pausieren</a>
+                    </div-->
+                </div>
+                <div class="question-change uk-hidden@s">
+                    <a class="uk-button uk-button-primary uk-icon" uk-icon="settings" 
+                        href="{{ route('culture.upcoming') }}"></a>
+                </div>
             </div>
-            <div class="question-change uk-hidden@s">
-                <a class="uk-button uk-button-primary uk-icon" uk-icon="settings" 
-                    href="{{ route('culture.upcoming') }}"></a>
-            </div>
-        </div>
+        @endif
 
         @foreach ($questions as $question)
         <div class="question prev">

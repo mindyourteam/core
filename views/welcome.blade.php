@@ -99,7 +99,7 @@
                 </div>
 
                 <div class="links">
-                    <p>Für weitere Informationen suche im Intranet nach &raquo;Product People&laquo;</p>
+                    <p>Für weitere Informationen suche im Confluence nach &raquo;Product People&laquo;</p>
                 </div>
             </div>
         </div>

@@ -34,6 +34,7 @@ class CultureQuestionController extends Controller
             ->first();
 
         return view('mindyourteam::culture.index', [
+            'is_lead' => $request->user()->id == $team->lead_id,
             'questions' => $questions,
             'next_question' => $next_question,
         ]);
@@ -41,7 +42,11 @@ class CultureQuestionController extends Controller
 
     public function upcoming(Request $request)
     {
-        $team = Team::find(env('APP_TEAM_ID'));  
+        $team = Team::find(env('APP_TEAM_ID'));
+        if ($request->user()->id != $team->lead_id) {
+            abort(403, 'Du darfst diese Frage nicht bearbeiten.');
+        }
+
         $questions = Question::with('answers')
             ->where('user_id', $team->lead_id)
             ->where('category', 'culture')
