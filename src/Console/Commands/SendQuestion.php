@@ -4,7 +4,9 @@ namespace Mindyourteam\Core\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 use Mindyourteam\Core\Models\Team;
+use Mindyourteam\Core\Models\Question;
 
 class SendQuestion extends Command
 {
@@ -54,7 +56,7 @@ class SendQuestion extends Command
             if (!$user->active) {
                 continue;
             }
-            $info->info(" - {$user->email}");
+            $this->info(" - {$user->email}");
 
             $token = Str::random(60);
             $user->setRememberToken($token);
@@ -69,7 +71,7 @@ class SendQuestion extends Command
                 'user' => $user,
                 'question' => $question,
                 'url' => $url,
-            ], function ($m) use ($user) {
+            ], function ($m) use ($user, $question) {
                 $m->from('hello@' . env('MAIL_DOMAIN'), config('app.name'));
                 $m->to($user->email)->subject(
                     '[Frage] ' . $question->body

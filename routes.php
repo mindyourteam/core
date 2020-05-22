@@ -22,7 +22,7 @@ Route::get('/home', function (Request $request) {
 });
 
 Route::get('login', 'LoginController@showLoginForm')->name('login');
-Route::get('logout', 'LoginController@logout')->name('logout');
+Route::post('logout', 'LoginController@logout')->name('logout');
 Route::post('login', 'LoginController@login')->name('authenticate');
 Route::get('login/{token}', 'LoginController@withToken')->name('withtoken');
 

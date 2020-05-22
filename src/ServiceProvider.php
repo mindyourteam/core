@@ -8,6 +8,7 @@ use Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Mindyourteam\Core\Console\Commands\ImportTopics;
 use Mindyourteam\Core\Console\Commands\ClientQuestions;
+use Mindyourteam\Core\Console\Commands\SendQuestion;
 use Illuminate\Pagination\Paginator;
 
 class ServiceProvider extends IlluminateServiceProvider
@@ -31,6 +32,7 @@ class ServiceProvider extends IlluminateServiceProvider
             $this->commands([
                 ImportTopics::class,
                 ClientQuestions::class,
+                SendQuestion::class,
             ]);
         }
 

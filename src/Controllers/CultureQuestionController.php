@@ -4,6 +4,7 @@ namespace Mindyourteam\Core\Controllers;
 
 use App\Http\Controllers\Controller;
 use Mindyourteam\Core\Models\Question;
+use Mindyourteam\Core\Models\Team;
 use Mindyourteam\Core\Resources\QuestionResource;
 use Illuminate\Http\Request;
 
@@ -18,14 +19,15 @@ class CultureQuestionController extends Controller
      */
     public function index(Request $request)
     {
+        $team = Team::find(env('APP_TEAM_ID'));  
         $questions = Question::with('answers')
-            ->where('user_id', $request->user()->id)
+            ->where('user_id', $team->lead_id)
             ->where('category', 'culture')
             ->whereRaw('planned_at <= NOW()')
             ->orderBy('planned_at', 'desc')
             ->paginate(5);
 
-        $next_question = Question::where('user_id', $request->user()->id)
+        $next_question = Question::where('user_id', $team->lead_id)
             ->where('category', 'culture')
             ->whereRaw('planned_at > NOW()')
             ->orderBy('planned_at', 'asc')
@@ -39,8 +41,9 @@ class CultureQuestionController extends Controller
 
     public function upcoming(Request $request)
     {
+        $team = Team::find(env('APP_TEAM_ID'));  
         $questions = Question::with('answers')
-            ->where('user_id', $request->user()->id)
+            ->where('user_id', $team->lead_id)
             ->where('category', 'culture')
             ->whereRaw('planned_at > NOW()')
             ->orderBy('planned_at', 'asc')
@@ -59,6 +62,10 @@ class CultureQuestionController extends Controller
      */
     public function show(Question $question)
     {
+        $team = Team::find(env('APP_TEAM_ID'));
+        if ($question->user_id != $team->lead_id) {
+            abort(404);
+        }
         return view('mindyourteam::culture.show', [
             'question' => $question,
         ]);
@@ -72,6 +79,11 @@ class CultureQuestionController extends Controller
      */
     public function store(Request $request)
     {
+        $team = Team::find(env('APP_TEAM_ID'));
+        if ($request->user()->id != $team->lead_id) {
+            abort(403, 'Du darfst diese Frage nicht speichern.');
+        }
+
         $data = $request->json()->all();
 
         if (in_array($data['type'], ['yesno', 'text'])) {
@@ -97,6 +109,11 @@ class CultureQuestionController extends Controller
      */
     public function next(Request $request, Question $question)
     {
+        $team = Team::find(env('APP_TEAM_ID'));
+        if ($request->user()->id != $team->lead_id) {
+            abort(403, 'Du darfst diese Frage nicht bearbeiten.');
+        }
+
         $questions = Question::where('user_id', $request->user()->id)
             ->where('category', 'culture')
             ->whereRaw('planned_at > NOW()')
@@ -139,6 +156,11 @@ class CultureQuestionController extends Controller
      */
     public function update(Request $request, Question $question)
     {
+        $team = Team::find(env('APP_TEAM_ID'));
+        if ($request->user()->id != $team->lead_id) {
+            abort(403, 'Du darfst diese Frage nicht speichern.');
+        }
+
         $data = $request->json()->all();
         $question->update($data);
         return response()->json([
@@ -156,6 +178,11 @@ class CultureQuestionController extends Controller
      */
     public function destroy(Request $request, Question $question)
     {
+        $team = Team::find(env('APP_TEAM_ID'));
+        if ($request->user()->id != $team->lead_id) {
+            abort(403, 'Du darfst diese Frage nicht speichern.');
+        }
+
         $question->delete();
 
         $questions = Question::where('user_id', $request->user()->id)
