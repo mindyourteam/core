@@ -43,6 +43,9 @@
     font-weight: bold;
     font-size: 1.2em;
 }
+.question-change {
+    margin-right: -20px;
+}
 .answers p {
     font-size: 0.9em;
     color: #888;

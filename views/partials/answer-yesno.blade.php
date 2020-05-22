@@ -9,6 +9,9 @@
         <li id="answer-no"></li>
     </ul>
 </div>
+
+@include('mindyourteam::partials.answer-text', ['placeholder' => 'Möchtest du etwas ergänzen?'])
+
 @push('toes')
 <script>
 UIkit.util.on('#answer-yes', 'shown', function (e) {

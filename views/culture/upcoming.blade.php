@@ -48,13 +48,15 @@
 
         <h1 class="uk-article-title">Nächste Fragen</h1>
 
-        <a class="uk-float-right uk-button uk-button-primary" href="#" onclick="create()">
-            <span class="uk-margin-small-right uk-icon" uk-icon="plus-circle"></span>
-            Neue Frage
-        </a>
+        <div class="uk-margin-large-bottom">
+            <a class="uk-float-right uk-button uk-button-primary" href="#" onclick="create()">
+                <span class="uk-margin-small-right uk-icon" uk-icon="plus-circle"></span>
+                Neue Frage
+            </a>
 
-        <p>Diese Fragen stellen wir einmal in der Woche Mittwoch um 08:30 Uhr - <a href="">Einstellungen ändern</a>.<br class="uk-visible@s">
-            Nur du kannst die privaten Antworten sehen - <a href="">Berechtigungen ändern</a>.
+            <p>Diese Fragen stellen wir einmal in der Woche Mittwoch um 08:30 Uhr.<!-- - <a href="">Einstellungen ändern</a>.<br class="uk-visible@s">
+                Nur du kannst die privaten Antworten sehen - <a href="">Berechtigungen ändern</a>. -->
+        </div>
 
         @forelse ($questions as $i => $question)
         <div class="question prev">

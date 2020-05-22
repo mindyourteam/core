@@ -38,3 +38,5 @@
     <p class="uk-text-bold">&hellip;10 {{ $question->max }}</p>
     <p><input name="1to5_answer" type="radio" class="uk-radio"></p>
 </div>
+
+@include('mindyourteam::partials.answer-text', ['placeholder' => 'Möchtest du etwas ergänzen?'])

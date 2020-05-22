@@ -12,7 +12,7 @@
 
         <h1 class="uk-article-title">Fragen zur Teamkultur</h1>
 
-        <p>Diese Fragen stellen wir einmal in der Woche am Mittwoch um 08:30 Uhr<!-- - <a href="">Einstellungen ändern</a> -->.<br class="uk-visible@s">
+        <p>Diese Fragen stellen wir einmal in der Woche am Mittwoch um 08:30 Uhr.<!-- - <a href="">Einstellungen ändern</a>.<br class="uk-visible@s">
             <!-- Nur du kannst die privaten Antworten sehen - <a href="">Berechtigungen ändern</a>. -->
 
         <div class="question next">
@@ -35,11 +35,11 @@
                         Ändere die nächsten Fragen
                     </a>
                 </div>
-                <div class="uk-text-center uk-margin-small-top">
+                <!--div class="uk-text-center uk-margin-small-top">
                     <a href="">Fragen pausieren</a>
-                </div>
+                </div-->
             </div>
-            <div class="question-change uk-margin-right uk-hidden@s">
+            <div class="question-change uk-hidden@s">
                 <a class="uk-button uk-button-primary uk-icon" uk-icon="settings" 
                     href="{{ route('culture.upcoming') }}"></a>
             </div>
