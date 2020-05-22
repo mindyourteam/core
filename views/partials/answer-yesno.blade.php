@@ -12,11 +12,9 @@
 @push('toes')
 <script>
 UIkit.util.on('#answer-yes', 'shown', function (e) {
-    console.log('shown', e);
     document.getElementById('yesno_answer').value = "1";
 });
 UIkit.util.on('#answer-no', 'shown', function (e) {
-    console.log('shown', e);
     document.getElementById('yesno_answer').value = "0";
 });
 </script>

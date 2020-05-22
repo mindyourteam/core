@@ -11,7 +11,7 @@
 
         <h1 class="uk-article-title">{{ $question->body }}</h1>
 
-        <form action="{{ route('answer.store', $question) }}">
+        <form method="POST" action="{{ route('answer.store', $question) }}">
             @csrf
             <input type="hidden" name="question_id" value="{{ $question->id }}">
             <fieldset class="uk-fieldset uk-grid-small" uk-grid>

@@ -52,6 +52,19 @@ class CultureQuestionController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  \App\Answer  $answer
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Question $question)
+    {
+        return view('mindyourteam::culture.show', [
+            'question' => $question,
+        ]);
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

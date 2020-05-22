@@ -12,8 +12,8 @@
 
         <h1 class="uk-article-title">Fragen zur Teamkultur</h1>
 
-        <p>Diese Fragen stellen wir einmal in der Woche Mittwoch um 08:30 Uhr - <a href="">Einstellungen ändern</a>.<br class="uk-visible@s">
-            Nur du kannst die privaten Antworten sehen - <a href="">Berechtigungen ändern</a>.
+        <p>Diese Fragen stellen wir einmal in der Woche am Mittwoch um 08:30 Uhr<!-- - <a href="">Einstellungen ändern</a> -->.<br class="uk-visible@s">
+            <!-- Nur du kannst die privaten Antworten sehen - <a href="">Berechtigungen ändern</a>. -->
 
         <div class="question next">
             <?php
@@ -55,10 +55,10 @@
                 <div>{{ $plan->locale('de')->monthName }}</div>
             </div>
             <div class="question-body">
-                <p class="text">{{ $question->body }}</p>
+                <p class="text">{{ $question->body }} <a href="{{ route('culture.show', $question) }}">&hellip;</a></p>
                 <div class="answers">
                 @forelse ($question->answers as $answer)
-                    <span>{{ $answer->user->name }}</span>
+                    <img class="uk-border-circle" title="{{ $answer->user->name }}" src="{{ $answer->gravatar }}">
                 @empty
                     <p>Keine Antworten</p>
                 @endforelse 
@@ -71,3 +71,14 @@
     </article>
 </div>
 @endsection
+
+@push('toes')
+@if (Session::has('success'))
+<script>
+UIkit.notification("<span uk-icon='icon: check'></span> {{ session('success') }}", {
+    pos: 'top-right',
+    status: 'success'
+});
+</script>
+@endif
+@endpush

@@ -18,4 +18,21 @@ class Answer extends Model
     {
         return $this->belongsTo(Question::class);
     }
+
+    function getGravatarAttribute()
+    {
+        $hash = md5(strtolower(trim($this->user->email)));
+        return "https://www.gravatar.com/avatar/{$hash}?s=40&d=retro";    
+    }
+
+    function getAnswerAttribute()
+    {
+        $question = $this->question;
+        $typed_answer = $question->type . '_answer';
+        $answer = $this->$typed_answer;
+        if ($question->type == 'yesno') {
+            $answer = $answer ? 'ja' : 'nein';
+        }
+        return $answer;
+    }
 }
