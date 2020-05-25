@@ -1,11 +1,11 @@
 - category: culture
-  topic: How Employees Generally Feel
+  epic: How Employees Generally Feel
   type: text
   body: What do you like most about working here?
   rationale: |
     People, nature of work, fun perks — this question highlights the great aspects of your organization that you should emphasize.
 - category: culture
-  topic: How Employees Generally Feel
+  epic: How Employees Generally Feel
   type: 1to5
   min: very connected
   max: not at all connected
@@ -13,19 +13,19 @@
   rationale: |
     Colleagues are a vital support system at the workplace, so make sure each employee is feeling like they are a part of that.
 - category: culture
-  topic: How Employees Generally Feel
+  epic: How Employees Generally Feel
   type: yesno
   body: In the past two months, have you interviewed for another job?
   rationale: |
     Are employees happy at their current role or do they already have one foot out the door?
 - category: culture
-  topic: How Employees Generally Feel
+  epic: How Employees Generally Feel
   type: text
   body: What was the number one reason you joined our organization?
   rationale: |
     Find out what’s drawing people to your organization and continue to highlight that during the recruitment process.
 - category: culture
-  topic: How Employees Generally Feel
+  epic: How Employees Generally Feel
   type: 1to10
   min: very unhappy
   max: very happy
@@ -33,31 +33,31 @@
   rationale: |
     Probe into whether employees are on cloud nine or down in the dumps at the workplace.
 - category: culture
-  topic: How Employees Generally Feel
+  epic: How Employees Generally Feel
   type: text
   body: What do you wish to get accomplished in life?
   rationale: |
     Dig into what your employees are trying to achieve in life, and find ways to complement their list.
 - category: culture
-  topic: How Employees Generally Feel
+  epic: How Employees Generally Feel
   type: text
   body: What did you like best about your previous employer?
   rationale: |
     If there was a process that worked efficiently at another company, who’s to say that it won’t work at your organization?
 - category: culture
-  topic: How Employees Generally Feel
+  epic: How Employees Generally Feel
   type: yesno
   body: Do you feel like your role here has a purpose?
   rationale: |
     People, especially millennials, want to feel like they have a sense of purpose within the company and they’re doing work that makes a positive impact on the world.
 - category: culture
-  topic: How Employees Generally Feel
+  epic: How Employees Generally Feel
   type: yesno
   body: Have you accomplished your goals in the last six months?
   rationale: |
     Find out whether your employee is going the extra mile and not receiving any recognition for their actions.
 - category: culture
-  topic: How Employees Generally Feel
+  epic: How Employees Generally Feel
   type: 1to5
   min: very unlikely
   max: very likely
@@ -65,13 +65,13 @@
   rationale: |
     Although not a huge amount, if an employee is unhappy at their job or they feel unfairly compensated, they’ll be more than happy to leave their job for a small raise.
 - category: culture
-  topic: How Employees Generally Feel
+  epic: How Employees Generally Feel
   type: text
   body: What kind of training would you like to receive to help you accomplish your career goals?
   rationale: |
     Employees want to stay at a company that nurtures their growth, so find out what kind of training your workers want.
 - category: culture
-  topic: How Employees Generally Feel
+  epic: How Employees Generally Feel
   type: 1to5
   min: not at all
   max: very much so
@@ -79,7 +79,7 @@
   rationale: |
     There’s nothing that will make an employee feel more devalued than being disrespected by their colleagues.
 - category: culture
-  topic: How Employees Generally Feel
+  epic: How Employees Generally Feel
   type: 1to10
   min: very bored
   max: very challenged
@@ -87,19 +87,19 @@
   rationale: |
     People get bored with redundant routines, so make sure you’re offering your employees sufficient variety in their workload.
 - category: culture
-  topic: How Employees Generally Feel
+  epic: How Employees Generally Feel
   type: text
   body: What's your most recent accomplishment at work?
   rationale: |
     If an employee has nothing good to say about this, you ought to be worried because they’re most likely not the happiest camper at work.
 - category: culture
-  topic: How Employees Generally Feel
+  epic: How Employees Generally Feel
   type: text
   body: If you were to leave this organization tomorrow, what would the reason be?
   rationale: |
     Answers can range from “changing careers” to “I hate my boss.” Find out why your employee would leave your organization.
 - category: culture
-  topic: How Employees Generally Feel
+  epic: How Employees Generally Feel
   type: 1to10
   min: not very balanced
   max: very balanced
@@ -107,13 +107,13 @@
   rationale: |
     Work-life balance has a huge impact on retention — employees who feel burnout will not stick around for very long.
 - category: culture
-  topic: How Employees Generally Feel
+  epic: How Employees Generally Feel
   type: text
   body: What motivates you to go above and beyond at work?
   rationale: |
     Find out what really drives your employee to put in 110% of their effort so you can find out how to keep them motivated.
 - category: culture
-  topic: How Employees Generally Feel
+  epic: How Employees Generally Feel
   type: 1to5
   min: not at all
   max: very much so
@@ -121,7 +121,7 @@
   rationale: |
     Many organizations have recognition programs, but most of them feel fake and forced to employees.
 - category: culture
-  topic: How Employees Generally Feel
+  epic: How Employees Generally Feel
   type: 1to5
   min: not at all
   max: very much so
@@ -129,7 +129,7 @@
   rationale: |
     Employees want to work on tasks that will help them progress in their career; make sure you’re not forcing people to go down a path they don’t want to go down.
 - category: culture
-  topic: How Employees Feel About the Company
+  epic: How Employees Feel About the Company
   type: 1to5
   min: not at all
   max: very much so
@@ -137,13 +137,13 @@
   rationale: |
     A dull work environment can make the time really drag, but a fun environment (i.e. having great and supportive colleagues) can really motivate people to go the extra mile.
 - category: culture
-  topic: How Employees Feel About the Company
+  epic: How Employees Feel About the Company
   type: text
   body: What do you think is our company's biggest strength that we should be focusing on?
   rationale: |
     Is your organization doing something really well? Find out what it is and put more focus on it.
 - category: culture
-  topic: How Employees Feel About the Company
+  epic: How Employees Feel About the Company
   type: 1to5
   min: not at all
   max: very much so
@@ -151,7 +151,7 @@
   rationale: |
     Employees, especially millennials, want a company that makes a positive impact on the world.
 - category: culture
-  topic: How Employees Feel About the Company
+  epic: How Employees Feel About the Company
   type: 1to5
   min: not at all
   max: very much so
@@ -159,13 +159,13 @@
   rationale: |
     Transparency plays a vital role in keeping employees happy, so find out how you’re doing in that aspect.
 - category: culture
-  topic: How Employees Feel About the Company
+  epic: How Employees Feel About the Company
   type: text
   body: What do you think is one process that we can improve here?
   rationale: |
     Onboarding, performance reviews, management — probe into what’s not working around the company.
 - category: culture
-  topic: How Employees Feel About the Company
+  epic: How Employees Feel About the Company
   type: 1to5
   min: not at all
   max: very much so
@@ -173,25 +173,25 @@
   rationale: |
     Developmental opportunities can make or break an employee’s decision to stay at an organization.
 - category: culture
-  topic: How Employees Feel About the Company
+  epic: How Employees Feel About the Company
   type: text
   body: What is one word that describes our culture?
   rationale: |
     Good words, bad words … you’ll be surprised at what your employees have to say about the culture.
 - category: culture
-  topic: How Employees Feel About the Company
+  epic: How Employees Feel About the Company
   type: text
   body: What are some ways that we can improve communication at our organization?
   rationale: |
     If communication is lacking, find out how you can help improve and streamline the process.
 - category: culture
-  topic: How Employees Feel About the Company
+  epic: How Employees Feel About the Company
   type: text
   body: What drives you crazy here?
   rationale: |
     As a leader, you may not be aware of the big or small obstacles that are hindering an employee’s productivity.
 - category: culture
-  topic: How Employees Feel About the Company
+  epic: How Employees Feel About the Company
   type: 1to5
   min: not at all
   max: totally
@@ -199,19 +199,19 @@
   rationale: |
     Organizational values are a company’s road map, and employees need to live by them in order to keep the culture aligned.
 - category: culture
-  topic: How Employees Feel About the Company
+  epic: How Employees Feel About the Company
   type: text
   body: What's one thing you'd like to see us continue doing here?
   rationale: |
     Is there something working great in the company? Find out how to replicate that.
 - category: culture
-  topic: How Employees Feel About the Company
+  epic: How Employees Feel About the Company
   type: text
   body: If you had to describe your company as an animal, what animal would it be and why?
   rationale: |
     Domineering lion or sly fox? Animals have certain characteristics that can either be predatory or nurturing.
 - category: culture
-  topic: How Employees Feel About the Company
+  epic: How Employees Feel About the Company
   type: 1to5
   min: not at all
   max: very much so
@@ -219,19 +219,19 @@
   rationale: |
     Most team-building activities are on the cheesy side, so find out if they’re actually working for your employees.
 - category: culture
-  topic: How Employees Feel About the Company
+  epic: How Employees Feel About the Company
   type: yesno
   body: Would you refer someone to work here?
   rationale: |
     If your employee is happy with their job and the culture, they would say yes. If not, then you know the answer.
 - category: culture
-  topic: How Employees Feel About the Company
+  epic: How Employees Feel About the Company
   type: text
   body: What do you see in our organization's future?
   rationale: |
     Discover if your employees see only success or failure in your organization’s future.
 - category: culture
-  topic: How Employees Feel About the Company
+  epic: How Employees Feel About the Company
   type: 1to5
   min: not at all
   max: very much so
@@ -239,13 +239,13 @@
   rationale: |
     Onboarding helps set up new hires for success, so if you’re not laying down the right foundation during the first few days, you’ll find out with this question.
 - category: culture
-  topic: How Employees Feel About the Company
+  epic: How Employees Feel About the Company
   type: yesno
   body: Are we a better organization now than we were 6 months ago?
   rationale: |
     If your organization went through a lot of change, this question will help you find out if those changes went well or flopped.
 - category: culture
-  topic: How Employees Feel About the Company
+  epic: How Employees Feel About the Company
   type: 1to5
   min: not at all
   max: very much so
@@ -253,25 +253,25 @@
   rationale: |
     Employees shouldn’t be ashamed to work for your organization, so if they are, figure out why.
 - category: culture
-  topic: How Employees Feel About the Company
+  epic: How Employees Feel About the Company
   type: text
   body: What potential hazards do you think can put us out of business?
   rationale: |
     Find out if there certain factors that are driving your organization towards failure.
 - category: culture
-  topic: How Employees Feel About the Company
+  epic: How Employees Feel About the Company
   type: text
   body: If your organization had a theme song, what would it be and why?
   rationale: |
     People relate music to certain emotions, so this question can elicit happy, frustrating, or sad melodies.
 - category: culture
-  topic: How Employees Feel About the Leadership Team
+  epic: How Employees Feel About the Leadership Team
   type: yesno
   body: Has a manager given you any recognition in the past month?
   rationale: |
     People want to appreciated at work, and two weeks without recognition enough to make an employee feel unvalued.
 - category: culture
-  topic: How Employees Feel About the Leadership Team
+  epic: How Employees Feel About the Leadership Team
   type: 1to10
   min: not at all
   max: very much so
@@ -279,7 +279,7 @@
   rationale: |
     Find out if a leader isn’t pulling their weight with recognition.
 - category: culture
-  topic: How Employees Feel About the Leadership Team
+  epic: How Employees Feel About the Leadership Team
   type: 1to5
   min: not at all
   max: very much so
@@ -287,7 +287,7 @@
   rationale: |
     Goals provide direction for your company and organization, so without them, people aren’t really serving a purpose with their work.
 - category: culture
-  topic: How Employees Feel About the Leadership Team
+  epic: How Employees Feel About the Leadership Team
   type: 1to5
   min: not at all
   max: very much so
@@ -295,7 +295,7 @@
   rationale: |
     Again, professional growth is a retention strategy.
 - category: culture
-  topic: How Employees Feel About the Leadership Team
+  epic: How Employees Feel About the Leadership Team
   type: 1to5
   min: not at all
   max: very much so
@@ -303,7 +303,7 @@
   rationale: |
     Make sure the leaders in your organization are approachable and receptive to feedback.
 - category: culture
-  topic: How Employees Feel About the Leadership Team
+  epic: How Employees Feel About the Leadership Team
   type: 1to5
   min: not at all
   max: very much so
@@ -311,19 +311,19 @@
   rationale: |
     There will always be disagreements, but the management team needs to be cohesive for the company to succeed.
 - category: culture
-  topic: How Employees Feel About the Leadership Team
+  epic: How Employees Feel About the Leadership Team
   type: text
   body: If they were making a movie about your organization, which actor or actress should play your CEO and why?
   rationale: |
     Find out if your employees think the CEO would be played by loony Jeff Goldblum or peace-loving Angelina Jolie.
 - category: culture
-  topic: How Employees Feel About the Leadership Team
+  epic: How Employees Feel About the Leadership Team
   type: yesno
   body: Do you feel respected by your direct supervisor?
   rationale: |
     Nothing will push an employee out the door quicker than a manager that is condescending to their people.
 - category: culture
-  topic: How Employees Feel About the Leadership Team
+  epic: How Employees Feel About the Leadership Team
   type: 1to5
   min: not at all
   max: very much so
@@ -331,7 +331,7 @@
   rationale: |
     Doing nothing about feedback is as good as not asking for it at all.
 - category: culture
-  topic: How Employees Feel About the Leadership Team
+  epic: How Employees Feel About the Leadership Team
   type: 1to5
   min: not at all
   max: very much so
@@ -339,7 +339,7 @@
   rationale: |
     Find out if your leaders are doing a good job of letting their employees know what’s going on in the company.
 - category: culture
-  topic: How Employees Feel About the Leadership Team
+  epic: How Employees Feel About the Leadership Team
   type: text
   body: If your direct supervisor was an animal, what would he or she be?
   rationale: |

@@ -4,10 +4,10 @@ namespace Mindyourteam\Core\Controllers;
 
 use App\Http\Controllers\Controller as AppController;
 use Mindyourteam\Core\Models\Product;
-use Mindyourteam\Core\Models\Topic;
+use Mindyourteam\Core\Models\Epic;
 use Illuminate\Http\Request;
 
-class TopicController extends AppController
+class EpicController extends AppController
 {
     /**
      * Display a listing of the resource.
@@ -16,11 +16,11 @@ class TopicController extends AppController
      */
     public function index(Product $product)
     {
-        $topics = Topic::where('product_id', $product->id)
+        $epics = Epic::where('product_id', $product->id)
             ->orderBy('name')
             ->paginate();
-        return view('mindyourteam::topic.index', [
-            'topics' => $topics,
+        return view('mindyourteam::epic.index', [
+            'epics' => $epics,
             'product' => $product,
         ]);
     }
@@ -47,21 +47,21 @@ class TopicController extends AppController
         $data["urgent"] = preg_match('/^d1w\d$/', $data["eisenhower"]) ? "yes" : "no";
         $data["important"] = preg_match('/^d\dw1$/', $data["eisenhower"]) ? "yes" : "no";
         $data["product_id"] = $product->id;
-        $topic = Topic::create($data);
+        $epic = Epic::create($data);
         return response()->json([
             'status' => 'ok', 
             'message' => 'Thema gespeichert',
-            'topic' => $topic,
+            'epic' => $epic,
         ]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Topic  $topic
+     * @param  \App\Epic  $epic
      * @return \Illuminate\Http\Response
      */
-    public function show(Topic $topic)
+    public function show(Epic $epic)
     {
         //
     }
@@ -69,10 +69,10 @@ class TopicController extends AppController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Topic  $topic
+     * @param  \App\Epic  $epic
      * @return \Illuminate\Http\Response
      */
-    public function edit(Topic $topic)
+    public function edit(Epic $epic)
     {
         //
     }
@@ -81,29 +81,29 @@ class TopicController extends AppController
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Topic  $topic
+     * @param  \App\Epic  $epic
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Topic $topic)
+    public function update(Request $request, Epic $epic)
     {
         $data = $request->json()->all();
         $data["urgent"] = preg_match('/^d1w\d$/', $data["eisenhower"]) ? "yes" : "no";
         $data["important"] = preg_match('/^d\dw1$/', $data["eisenhower"]) ? "yes" : "no";
-        $topic->update($data);
+        $epic->update($data);
         return response()->json([
             'status' => 'ok', 
             'message' => 'Thema gespeichert',
-            'topic' => $topic,
+            'epic' => $epic,
         ]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Topic  $topic
+     * @param  \App\Epic  $epic
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Topic $topic)
+    public function destroy(Epic $epic)
     {
         //
     }

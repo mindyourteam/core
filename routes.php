@@ -41,9 +41,9 @@ Route::middleware('auth')->group(function () {
      */
     if (config('mindyourteam.feature.product-planning', true)) {
         Route::get('product/{productplan}', 'ProductController@index')->name('product');
-        Route::get('topic/{product}', 'TopicController@index')->name('topic');
-        Route::post('topic/{product}', 'TopicController@store')->name('topic.store');
-        Route::put('topic/{topic}', 'TopicController@update')->name('topic.update');
+        Route::get('epic/{product}', 'EpicController@index')->name('epic');
+        Route::post('epic/{product}', 'EpicController@store')->name('epic.store');
+        Route::put('epic/{epic}', 'EpicController@update')->name('epic.update');
 
         Route::post('publish', 'ProductplanController@publish')->name('plan.publish');
     }

@@ -22,7 +22,7 @@ class CreateBlueprintsTable extends Migration
             $table->string('min')->nullable();
             $table->string('max')->nullable();
             $table->enum('lang', ['de', 'en'])->default('en');
-            $table->string('topic');
+            $table->string('epic');
             $table->text('body');
             $table->text('rationale');
             $table->string('source');

@@ -11,7 +11,7 @@
 
         @foreach ($products as $product)
         <ul>
-            <li><a href="{{ route('topic', ['product' => $product]) }}">{{ $product->name }}</a></li>
+            <li><a href="{{ route('epic', ['product' => $product]) }}">{{ $product->name }}</a></li>
         </ul>
         @endforeach
     </article>

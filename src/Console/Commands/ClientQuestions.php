@@ -55,7 +55,7 @@ class ClientQuestions extends Command
             $plan = $planned_at->toDateTimeString();
             $this->info(" - {$bp->body} - planned for {$plan}");
             $record = $bp->toArray();
-            unset($record['topic']);
+            unset($record['epic']);
             unset($record['rationale']);
             $record += [
                 'blueprint_id' => $bp->id,

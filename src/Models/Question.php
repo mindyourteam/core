@@ -16,7 +16,7 @@ class Question extends Model
         'type', 
         'min', 
         'max', 
-        'topic', 
+        'epic', 
         'body', 
         'rationale', 
         'planned_at'

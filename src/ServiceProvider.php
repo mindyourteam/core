@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
 use Illuminate\Database\Eloquent\Relations\Relation;
-use Mindyourteam\Core\Console\Commands\ImportTopics;
+use Mindyourteam\Core\Console\Commands\ImportEpics;
 use Mindyourteam\Core\Console\Commands\ClientQuestions;
 use Mindyourteam\Core\Console\Commands\SendQuestion;
 use Illuminate\Pagination\Paginator;
@@ -30,7 +30,7 @@ class ServiceProvider extends IlluminateServiceProvider
 
         if ($this->app->runningInConsole()) {
             $this->commands([
-                ImportTopics::class,
+                ImportEpics::class,
                 ClientQuestions::class,
                 SendQuestion::class,
             ]);

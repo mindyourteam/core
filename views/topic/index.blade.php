@@ -10,22 +10,22 @@
         </div>
         <h1 class="uk-article-title">Themen in {{ $product->name }}</h1>
 
-        @forelse ($topics as $topic)
-        <ul id="topics">
+        @forelse ($epics as $epic)
+        <ul id="epics">
             <li>
                 <div class="float-right">
-                    <a href="#" class="icon" onclick="edit(JSON.parse(document.getElementById('topic-{{ $topic->id }}').dataset.topic))">✎</a>
+                    <a href="#" class="icon" onclick="edit(JSON.parse(document.getElementById('epic-{{ $epic->id }}').dataset.epic))">✎</a>
                 </div>
-                <span id="topic-{{ $topic->id }}" data-topic="{{ json_encode($topic) }}">
-                    <strong>{{ $topic->name }}</strong>: {{ $topic->description }}<br>
-                    {{ $topic->roadmap }}, {{ $topic->effort }},
-                    {{ $topic->urgent == 'yes' ? '' : 'nicht' }} drigend &amp;
-                    {{ $topic->important == 'yes' ? '' : 'nicht' }} wichtig
+                <span id="epic-{{ $epic->id }}" data-epic="{{ json_encode($epic) }}">
+                    <strong>{{ $epic->name }}</strong>: {{ $epic->description }}<br>
+                    {{ $epic->roadmap }}, {{ $epic->effort }},
+                    {{ $epic->urgent == 'yes' ? '' : 'nicht' }} drigend &amp;
+                    {{ $epic->important == 'yes' ? '' : 'nicht' }} wichtig
                 </span>
             </li>
         </ul>
         @empty
-            <ul id="topics"></ul>
+            <ul id="epics"></ul>
             <p id="empty">- Keine Themen -</p>
         @endforelse
     </article>
@@ -39,28 +39,28 @@
         <div class="float-right close">
             <a href="#" class="icon" onclick="off()">╳</a>
         </div>
-        <h4>Thema <em id="orig-topic-name"></em> <span id="verb"></span></h4>
+        <h4>Thema <em id="orig-epic-name"></em> <span id="verb"></span></h4>
         <fieldset>
-            <label for="topic-name">Name</label>
-            <input id="topic-name" type="text">
-            <label for="topic-description">Beschreibung</label>
-            <textarea id="topic-description"></textarea>
-            <label for="topic-roadmap">Roadmap</label>
-            <select id="topic-roadmap">
+            <label for="epic-name">Name</label>
+            <input id="epic-name" type="text">
+            <label for="epic-description">Beschreibung</label>
+            <textarea id="epic-description"></textarea>
+            <label for="epic-roadmap">Roadmap</label>
+            <select id="epic-roadmap">
                 <option>---</option>
                 <option>kurzfristig</option>
                 <option>mittelfristig</option>
                 <option>langfristig</option>
             </select>
-            <label for="topic-effort">Aufwand</label>
-            <select id="topic-effort">
+            <label for="epic-effort">Aufwand</label>
+            <select id="epic-effort">
                 <option>---</option>
                 <option>2 Wochen</option>
                 <option>6 Wochen</option>
                 <option>12 Wochen</option>
             </select>
-            <label for="topic-eisenhower">Eisenhower-Matrix</label>
-            <select id="topic-eisenhower">
+            <label for="epic-eisenhower">Eisenhower-Matrix</label>
+            <select id="epic-eisenhower">
                 <option>---</option>
                 <option value="d1w1">dringend &amp; wichtig</option>
                 <option value="d1w0">dringend &amp; nicht wichtig</option>
@@ -72,31 +72,31 @@
     </form>
 </div>
 <script>
-var topic_id;
+var epic_id;
 
 function create() {
-    topic_id = null;
-    document.getElementById("orig-topic-name").innerHTML = "";
+    epic_id = null;
+    document.getElementById("orig-epic-name").innerHTML = "";
     document.getElementById("verb").innerHTML = "anlegen";
-    document.getElementById("topic-name").value = "";
-    document.getElementById("topic-description").value = "";
-    document.getElementById("topic-roadmap").value = "---";
-    document.getElementById("topic-effort").value = "---";
-    document.getElementById("topic-eisenhower").value = "---";
+    document.getElementById("epic-name").value = "";
+    document.getElementById("epic-description").value = "";
+    document.getElementById("epic-roadmap").value = "---";
+    document.getElementById("epic-effort").value = "---";
+    document.getElementById("epic-eisenhower").value = "---";
     document.getElementById("overlay").style.display = "block";
 }
 
-function edit(topic) {
-    topic_id = topic.id;
-    document.getElementById("orig-topic-name").innerHTML = topic.name;
+function edit(epic) {
+    epic_id = epic.id;
+    document.getElementById("orig-epic-name").innerHTML = epic.name;
     document.getElementById("verb").innerHTML = "bearbeiten";
-    document.getElementById("topic-name").value = topic.name;
-    document.getElementById("topic-description").value = topic.description;
-    document.getElementById("topic-roadmap").value = topic.roadmap;
-    document.getElementById("topic-effort").value = topic.effort;
-    document.getElementById("topic-eisenhower").value 
-        = "d" + (topic.urgent == 'yes' ? '1' : '0')
-        + "w" + (topic.important == 'yes' ? '1' : '0');
+    document.getElementById("epic-name").value = epic.name;
+    document.getElementById("epic-description").value = epic.description;
+    document.getElementById("epic-roadmap").value = epic.roadmap;
+    document.getElementById("epic-effort").value = epic.effort;
+    document.getElementById("epic-eisenhower").value 
+        = "d" + (epic.urgent == 'yes' ? '1' : '0')
+        + "w" + (epic.important == 'yes' ? '1' : '0');
     document.getElementById("overlay").style.display = "block";
 }
 
@@ -104,31 +104,31 @@ function off() {
   document.getElementById("overlay").style.display = "none";
 }
 
-function item_text(topic) {
-    return `<strong>${topic.name}</strong>: ${topic.description}<br>
-        ${topic.roadmap}, ${topic.effort},
-        ${topic.urgent == 'yes' ? '' : 'nicht'} drigend &amp;
-        ${topic.important == 'yes' ? '' : 'nicht'} wichtig`;
+function item_text(epic) {
+    return `<strong>${epic.name}</strong>: ${epic.description}<br>
+        ${epic.roadmap}, ${epic.effort},
+        ${epic.urgent == 'yes' ? '' : 'nicht'} drigend &amp;
+        ${epic.important == 'yes' ? '' : 'nicht'} wichtig`;
 }
 
 function save() {
     var data = {
-        name: document.getElementById("topic-name").value,
-        description: document.getElementById("topic-description").value,
-        roadmap: document.getElementById("topic-roadmap").value,
-        effort: document.getElementById("topic-effort").value,
-        eisenhower: document.getElementById("topic-eisenhower").value
+        name: document.getElementById("epic-name").value,
+        description: document.getElementById("epic-description").value,
+        roadmap: document.getElementById("epic-roadmap").value,
+        effort: document.getElementById("epic-effort").value,
+        eisenhower: document.getElementById("epic-eisenhower").value
     };
     var csrf = document.getElementById('overlay-text')._token.value;
 
     var method, url;
-    if (topic_id) {
+    if (epic_id) {
         method = "PUT";
-        url = "/topic/" +  topic_id;
+        url = "/epic/" +  epic_id;
     }
     else {
         method = "POST";
-        url = "/topic/{{ $product->id }}";
+        url = "/epic/{{ $product->id }}";
     }
     
     fetch(url, {
@@ -142,21 +142,21 @@ function save() {
     .then(response => response.json())
     .then(data => {
         console.log("Saved:", data);
-        var item = document.getElementById("topic-" + data.topic.id);
+        var item = document.getElementById("epic-" + data.epic.id);
 
         if (item) {
-            item.dataset.topic = JSON.stringify(data.topic);
-            item.innerHTML = item_text(data.topic);
+            item.dataset.epic = JSON.stringify(data.epic);
+            item.innerHTML = item_text(data.epic);
         }
         else {
             var li = document.createElement("LI");
             li.innerHTML = `<div class="float-right">
-                    <a href="#" class="icon" onclick="edit(JSON.parse(document.getElementById('topic-${data.topic.id}').dataset.topic))">✎</a>
+                    <a href="#" class="icon" onclick="edit(JSON.parse(document.getElementById('epic-${data.epic.id}').dataset.epic))">✎</a>
                 </div>
-                <span id="topic-${data.topic.id}" data-topic="${JSON.stringify(data.topic)}">
-                    ${item_text(data.topic)}
+                <span id="epic-${data.epic.id}" data-epic="${JSON.stringify(data.epic)}">
+                    ${item_text(data.epic)}
                 </span>`;
-            document.getElementById("topics").appendChild(li);
+            document.getElementById("epics").appendChild(li);
             document.getElementById("empty").style.display = "none";   
         }
         off();

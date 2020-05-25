@@ -23,7 +23,7 @@ class QuestionResource extends JsonResource
             'printable_type' => $this->printable_type, 
             'min' => $this->min, 
             'max' => $this->max, 
-            'topic' => $this->topic, 
+            'epic' => $this->epic, 
             'body' => $this->body, 
             'rationale' => $this->rationale, 
             'planned_at' => $this->planned_at,
