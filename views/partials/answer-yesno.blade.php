@@ -3,7 +3,7 @@
 ?>
 <div class="uk-width-1-1">
     <label class="uk-switch" for="yesno_answer">
-        <input type="checkbox" id="yesno_answer" name="yesno_answer" value="1"{{ $my_answer->yesno_answer ? ' checked' : '' }}>
+        <input type="checkbox" id="yesno_answer" name="yesno_answer" value="1"{{ isset($my_answer) && $my_answer->yesno_answer ? ' checked' : '' }}>
         <div class="uk-switch-slider"></div>
     </label>
 </div>
