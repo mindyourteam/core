@@ -4,5 +4,5 @@ if (empty($placeholder)) {
 }
 ?>
 <div class="uk-width-1-1">
-    <textarea name="text_answer" class="uk-textarea" placeholder="{{ $placeholder }}">{{ $my_answer->text_answer }}</textarea>
+    <textarea name="text_answer" class="uk-textarea" placeholder="{{ $placeholder }}">{{ isset($my_answer) ? $my_answer->text_answer : '' }}</textarea>
 </div>
