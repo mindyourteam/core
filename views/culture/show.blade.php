@@ -45,6 +45,9 @@
             </tbody>
             </table>
 
+            <a class="uk-button uk-button-primary" href="{{ route('answer', $question) }}"><span uk-icon="comment"></span> Antworte auf diese Frage</a>
+
+
             <?php
             $text_answers = $question->answers->whereNotNull('text_answer');
             $count = $text_answers->count();

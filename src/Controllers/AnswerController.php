@@ -25,14 +25,19 @@ class AnswerController extends Controller
         return view('mindyourteam::answer.index', ['question' => $question]);
     }
 
-    public function index(Question $question)
+    public function index(Question $question, Request $request)
     {
         $team = Team::find(env('APP_TEAM_ID'));
         if ($question->user_id != $team->lead_id) {
             abort(403, 'Du darfst diese Frage nicht beantworten.');
         }
 
-        return view('mindyourteam::answer.index', ['question' => $question]);
+        $my_answer = $question->answers()->where('user_id', $request->user()->id)->first();
+
+        return view('mindyourteam::answer.index', [
+            'question' => $question,
+            'my_answer' => $my_answer,
+        ]);
     }
 
     /**
@@ -49,8 +54,15 @@ class AnswerController extends Controller
             abort(403, 'Du darfst diese Frage nicht beantworten.');
         }
 
-        $input = $request->all();
-        $answer = Answer::firstOrCreate([
+        if ($question->type == 'yesno') {
+            $defaults = [ 'yesno_answer' => false ];
+        }
+        else {
+            $defaults = [];
+        }
+        $input = $request->all() + $defaults;
+
+        $answer = Answer::updateOrCreate([
             'user_id' => $request->user()->id,
             'question_id' => $question->id,
         ], $input);

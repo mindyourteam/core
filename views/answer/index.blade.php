@@ -11,6 +11,10 @@
 
         <h1 class="uk-article-title">{{ $question->body }}</h1>
 
+        @if ($my_answer)
+            <p class="uk-text-meta">Du hast diese Frage am {{ (new \Carbon\Carbon($my_answer->created_at))->toDateString() }} beantwortet.</p>
+        @endif
+
         <form method="POST" action="{{ route('answer.store') }}">
             @csrf
             <input type="hidden" name="question_id" value="{{ $question->id }}">
