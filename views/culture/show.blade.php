@@ -44,36 +44,36 @@
             @endforeach
             </tbody>
             </table>
-
-            <a class="uk-button uk-button-primary" href="{{ route('answer', $question) }}"><span uk-icon="comment"></span> Antworte auf diese Frage</a>
-
-
-            <?php
-            $text_answers = $question->answers->whereNotNull('text_answer');
-            $count = $text_answers->count();
-            $title = ($count == 1) ? 'Es gab einen Kommentar' : "Es gab {$count} Kommentare";
-            ?>
-
-            @if ($count)
-                <h2>{{ $title }}</h2>
-
-                @foreach ($question->answers->whereNotNull('text_answer') as $answer)
-                    <article class="uk-comment uk-margin-top">
-                        <header class="uk-comment-header uk-grid-medium uk-flex-middle" uk-grid>
-                            <div class="uk-width-auto">
-                                <img class="uk-comment-avatar uk-border-circle" src="{{ $answer->gravatar }}">
-                            </div>
-                            <div class="uk-width-expand">
-                                <h4 class="uk-comment-title uk-margin-remove">{{ $answer->user->name }}</h4>
-                                <div class="uk-comment-meta uk-margin-remove-top">Antwortete <strong>{{ $answer->answer }}</strong></div>
-                            </div>
-                        </header>
-                        <div class="uk-comment-body">{{ $answer->text_answer }}</div>
-                    </article>
-                @endforeach
-            @endif
+        
         @else
-            <p>Keine Antworten.</p>
+            <p>Bisher keine Antworten.</p>
+        @endif
+
+        <a class="uk-button uk-button-primary" href="{{ route('answer', $question) }}"><span uk-icon="comment"></span> Antworte auf diese Frage</a>
+
+        <?php
+        $text_answers = $question->answers->whereNotNull('text_answer');
+        $count = $text_answers->count();
+        $title = ($count == 1) ? 'Es gab einen Kommentar' : "Es gab {$count} Kommentare";
+        ?>
+
+        @if ($count)
+            <h2>{{ $title }}</h2>
+
+            @foreach ($question->answers->whereNotNull('text_answer') as $answer)
+                <article class="uk-comment uk-margin-top">
+                    <header class="uk-comment-header uk-grid-medium uk-flex-middle" uk-grid>
+                        <div class="uk-width-auto">
+                            <img class="uk-comment-avatar uk-border-circle" src="{{ $answer->gravatar }}">
+                        </div>
+                        <div class="uk-width-expand">
+                            <h4 class="uk-comment-title uk-margin-remove">{{ $answer->user->name }}</h4>
+                            <div class="uk-comment-meta uk-margin-remove-top">Antwortete <strong>{{ $answer->answer }}</strong></div>
+                        </div>
+                    </header>
+                    <div class="uk-comment-body">{{ $answer->text_answer }}</div>
+                </article>
+            @endforeach
         @endif
 
     </article>
