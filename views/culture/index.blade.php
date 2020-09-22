@@ -15,7 +15,7 @@
         <p>Diese Fragen stellen wir einmal in der Woche am Mittwoch um 08:30 Uhr.<!-- - <a href="">Einstellungen ändern</a>.<br class="uk-visible@s">
             <!-- Nur du kannst die privaten Antworten sehen - <a href="">Berechtigungen ändern</a>. -->
 
-        @if ($is_lead)
+        @if ($is_lead && $next_question)
             <div class="question next">
                 <?php
                 $plan = \Carbon\Carbon::parse($next_question->planned_at);
