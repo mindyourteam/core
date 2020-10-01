@@ -3,7 +3,7 @@
 @section('content')
 <div class="uk-container">
     <article class="uk-article uk-margin-top uk-margin-bottom">
-        <h1 class="uk-article-title">::PDP:: Werkzeuge</h1>
+        <h1 class="uk-article-title">::AppDev:: Werkzeuge</h1>
 
         <p>Was möchtest du tun? Bitte wähle eine Funktion über das Hamburgermenü oben links aus.</p>
 
