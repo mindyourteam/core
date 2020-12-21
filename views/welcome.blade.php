@@ -95,11 +95,12 @@
                 @endif
 
                 <div class="title m-b-md">
-                    ::pdp zone::
+                    ::dwapps::
+
                 </div>
 
                 <div class="links">
-                    <p>Für weitere Informationen suche im Confluence nach &raquo;Product People&laquo;</p>
+                    <p>Für weitere Informationen suche im Confluence im Bereich &raquo;Apps&laquo; nach &raquo;Team-Werkzeuge&laquo;</p>
                 </div>
             </div>
         </div>
